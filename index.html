@@ -1,0 +1,1708 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffeaf1">
+
+<title>A Little Surprise for Rasmalai ❤️</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --pink: #ed5b91;
+    --deep-pink: #d84d86;
+    --soft-pink: #ffeaf1;
+    --text: #75405e;
+    --muted: #98758a;
+    --purple: #493653;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100svh;
+    overflow: hidden;
+    background: #fff0f5;
+    font-family: 'Poppins', sans-serif;
+}
+
+button {
+    font: inherit;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* FLOATING BACKGROUND */
+
+.floating-decor {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.floating-decor span {
+    position: absolute;
+    bottom: -40px;
+    color: #e98bb0;
+    opacity: .5;
+    animation: backgroundFloat 13s linear infinite;
+}
+
+.floating-decor span:nth-child(1) {
+    left: 8%;
+    font-size: 24px;
+    animation-delay: -2s;
+}
+
+.floating-decor span:nth-child(2) {
+    left: 25%;
+    font-size: 17px;
+    animation-delay: -7s;
+}
+
+.floating-decor span:nth-child(3) {
+    left: 65%;
+    font-size: 20px;
+    animation-delay: -4s;
+}
+
+.floating-decor span:nth-child(4) {
+    left: 85%;
+    font-size: 27px;
+    animation-delay: -9s;
+}
+
+.floating-decor span:nth-child(5) {
+    left: 48%;
+    font-size: 16px;
+    animation-delay: -5s;
+}
+
+@keyframes backgroundFloat {
+    from {
+        transform: translateY(0) rotate(0);
+        opacity: 0;
+    }
+    15% { opacity: .5; }
+    to {
+        transform: translateY(-110vh) rotate(240deg);
+        opacity: 0;
+    }
+}
+
+/* WELCOME SCREEN */
+
+.welcome-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(12px, 3vw, 30px);
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    background:
+        radial-gradient(circle at 12% 15%, rgba(255,255,255,.7), transparent 27%),
+        radial-gradient(circle at 88% 82%, rgba(255,255,255,.55), transparent 25%),
+        linear-gradient(135deg, #ffdce7, #ffeaf0 52%, #fbd9e6);
+
+    opacity: 1;
+    transition: opacity .85s ease, transform .85s ease, filter .85s ease;
+}
+
+.welcome-screen.leaving {
+    opacity: 0;
+    transform: scale(.96);
+    filter: blur(7px);
+    pointer-events: none;
+}
+
+.welcome-card {
+    position: relative;
+    isolation: isolate;
+    width: min(100%, 710px);
+    min-height: 0;
+    padding: clamp(20px, 3.5vh, 35px) clamp(20px, 5vw, 55px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.92);
+    border-radius: clamp(22px, 4vw, 34px);
+    background: rgba(255,255,255,.97);
+
+    box-shadow:
+        0 22px 65px rgba(157,83,117,.18),
+        0 4px 14px rgba(196,112,147,.08);
+}
+
+.welcome-card::before,
+.welcome-card::after {
+    content: "";
+    position: absolute;
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    z-index: -1;
+    filter: blur(2px);
+}
+
+.welcome-card::before {
+    top: -110px;
+    left: -80px;
+    background: #ffe5ee;
+}
+
+.welcome-card::after {
+    right: -105px;
+    bottom: -120px;
+    background: #f4e8ff;
+}
+
+/* DECORATIONS */
+
+.corner-decor {
+    position: absolute;
+    color: #f4a2bf;
+    font-size: 30px;
+    line-height: 1;
+    opacity: .8;
+    animation: softBeat 2.2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.decor-one { top: 20px; left: 25px; }
+.decor-two { top: 25px; right: 30px; font-size: 24px; animation-delay: .5s; }
+.decor-three { right: 25px; bottom: 25px; animation-delay: .9s; }
+.decor-four { left: 25px; bottom: 28px; animation-delay: .3s; }
+
+@keyframes softBeat {
+    50% { transform: scale(1.18) rotate(8deg); }
+}
+
+/* BUBU DUDU */
+
+.couple-stage {
+    position: relative;
+    width: min(100%, 310px);
+    height: clamp(160px, 26vh, 220px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: clamp(5px, 1.5vh, 12px);
+}
+
+.welcome-bears {
+    display: block;
+    width: min(100%, 220px);
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 9px 10px rgba(143,92,112,.12));
+    transform-origin: center bottom;
+    animation: coupleSway 3s ease-in-out infinite;
+}
+
+@keyframes coupleSway {
+    0%, 100% { transform: translateY(0) rotate(-1deg) scale(1); }
+    50% { transform: translateY(-5px) rotate(1deg) scale(1.025); }
+}
+
+.love-hearts {
+    position: absolute;
+    top: 36%;
+    left: 52%;
+    width: 65px;
+    height: 75px;
+    pointer-events: none;
+}
+
+.love-hearts span {
+    position: absolute;
+    display: block;
+    color: #f05b91;
+    font-size: 16px;
+    opacity: 0;
+    animation: heartRise 2.8s ease-in-out infinite;
+}
+
+.love-hearts span:nth-child(1) { left: 5px; top: 25px; }
+.love-hearts span:nth-child(2) { left: 23px; top: 35px; animation-delay: .55s; }
+.love-hearts span:nth-child(3) { left: 39px; top: 30px; font-size: 18px; animation-delay: 1.1s; }
+.love-hearts span:nth-child(4) { left: 15px; top: 42px; font-size: 12px; animation-delay: 1.65s; }
+.love-hearts span:nth-child(5) { left: 34px; top: 45px; font-size: 18px; animation-delay: 2.1s; }
+
+@keyframes heartRise {
+    0% { opacity: 0; transform: translateY(20px) scale(.35); }
+    20% { opacity: .95; }
+    70% { opacity: .9; }
+    100% { opacity: 0; transform: translateY(-45px) scale(1.1); }
+}
+
+/* TEXT */
+
+.waiting-label {
+    color: #b69aaa;
+    font-size: clamp(8px, 1.5vw, 10px);
+    font-weight: 700;
+    letter-spacing: clamp(2px, .55vw, 3.5px);
+    margin-top: 2px;
+}
+
+.just-for-you {
+    color: #5b4a54;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(29px, 5.8vw, 43px);
+    font-weight: 600;
+    font-style: italic;
+    margin-top: 8px;
+    line-height: 1.2;
+}
+
+.recipient-line {
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 1px;
+}
+
+.recipient-name {
+    color: #e56d98;
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: clamp(42px, 8vw, 60px);
+    line-height: 1.2;
+    text-shadow: 0 3px 0 rgba(255,220,232,.8);
+}
+
+.recipient-flower {
+    font-size: clamp(24px, 5vw, 34px);
+    animation: softBeat 2s ease-in-out infinite;
+}
+
+.welcome-message {
+    color: #a18a98;
+    font-size: clamp(9px, 1.7vw, 11px);
+    line-height: 1.8;
+    margin-top: 8px;
+}
+
+.love-note {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #c8a9b9;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 2.2px;
+    margin-top: clamp(13px, 2.5vh, 22px);
+}
+
+.love-note span {
+    color: #ed8eb0;
+    font-size: 13px;
+}
+
+/* PLAY MUSIC BUTTON */
+
+.start-button {
+    margin-top: 24px;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .3px;
+    cursor: pointer;
+
+    background: linear-gradient(135deg, #ff91b9, #df4f89);
+    box-shadow: 0 9px 22px rgba(225,83,139,.28);
+
+    transition: transform .25s ease, box-shadow .25s ease;
+    animation: buttonPulse 2s ease-in-out infinite;
+}
+
+.start-button:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 13px 28px rgba(225,83,139,.38);
+}
+
+.start-button:active {
+    transform: scale(.96);
+}
+
+@keyframes buttonPulse {
+    50% { box-shadow: 0 9px 27px rgba(225,83,139,.42); }
+}
+
+/* COUNTDOWN */
+
+.countdown-area {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: countdownAppear .8s ease both;
+}
+
+@keyframes countdownAppear {
+    from { opacity: 0; transform: translateY(18px) scale(.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.countdown-card {
+    width: min(100%, 440px);
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(6px, 2vw, 17px);
+    margin-top: clamp(16px, 2.8vh, 23px);
+    padding: 4px;
+}
+
+.countdown-unit {
+    min-width: 0;
+    min-height: 82px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: #fffdfd;
+    border: 1px solid #f2e4eb;
+    border-radius: 17px;
+    box-shadow: 0 4px 15px rgba(166,104,135,.07);
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.countdown-unit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(166,104,135,.12);
+}
+
+.countdown-number {
+    color: #b65d79;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 5vw, 34px);
+    line-height: 1;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.countdown-unit > span {
+    color: #c3a8b6;
+    font-size: clamp(7px, 1.2vw, 9px);
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.timer-note {
+    color: #ad91a1;
+    font-size: clamp(8px, 1.3vw, 10px);
+    line-height: 1.6;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.early-access {
+    color: #bd9bad;
+    font-size: 9px;
+    letter-spacing: 1px;
+    margin-top: 12px;
+}
+
+/* PASSWORD SCREEN */
+
+.passcode-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(12px, 3vw, 30px);
+    background: linear-gradient(135deg, #fff4ef, #ffe8ed, #fff8f1);
+    overflow-x: hidden;
+    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(1.025);
+    transition: opacity .85s ease, transform .85s ease, visibility .85s ease;
+}
+
+.passcode-screen.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+.passcode-card {
+    width: 100%;
+    max-width: 850px;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    overflow: hidden;
+    background: rgba(255,255,255,.96);
+    border: 1px solid rgba(255,255,255,.7);
+    border-radius: clamp(16px, 2.5vw, 24px);
+    box-shadow: 0 25px 70px rgba(120,70,90,.18), 0 0 30px rgba(255,190,220,.12);
+}
+
+/* LEFT BEAR SIDE */
+
+.bear-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: clamp(18px, 3vw, 32px) clamp(12px, 2vw, 22px);
+    text-align: center;
+    background: linear-gradient(145deg, #fff8ef, #ffe9ed, #f8eaff);
+}
+
+.bear-heading {
+    color: #a04f79;
+    font-size: clamp(13px, 2vw, 19px);
+    font-weight: 700;
+    letter-spacing: clamp(.5px, .2vw, 1.5px);
+    margin-bottom: clamp(12px, 2vh, 20px);
+}
+
+.bear-frame {
+    position: relative;
+    width: min(100%, 300px);
+    height: clamp(180px, 30vw, 260px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: radial-gradient(circle, #fff 10%, #ffe1e9 75%);
+    border: 5px solid white;
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(155,90,130,.18);
+}
+
+.bear-animation {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.bear-names {
+    margin-top: 10px;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(15px, 2vw, 18px);
+    font-weight: 700;
+    color: #87516e;
+    letter-spacing: 1px;
+}
+
+.bear-names span {
+    color: #ed5b91;
+    font-size: 19px;
+    margin: 0 5px;
+    animation: heartBeat 1s infinite;
+    display: inline-block;
+}
+
+@keyframes heartBeat {
+    50% { transform: scale(1.3); }
+}
+
+.bear-section h2 {
+    color: #75405e;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(19px, 2.5vw, 24px);
+    margin-top: 16px;
+}
+
+.bear-section p {
+    color: #98758a;
+    font-size: clamp(10px, 1.4vw, 12px);
+    margin-top: 7px;
+}
+
+/* KEYPAD SIDE */
+
+.keypad-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    padding: clamp(20px, 3vw, 35px) clamp(14px, 3vw, 25px);
+    background: linear-gradient(145deg, #fff0f4, #fce6f0, #fff5ed);
+}
+
+.keypad-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lock-icon {
+    font-size: clamp(27px, 4vw, 36px);
+    margin-bottom: 8px;
+}
+
+.keypad-section h2 {
+    color: #493653;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(21px, 3vw, 26px);
+    text-align: center;
+}
+
+.keypad-subtitle {
+    color: #8e779b;
+    font-size: clamp(10px, 1.4vw, 12px);
+    margin-top: 6px;
+    text-align: center;
+}
+
+/* PASSWORD BOXES */
+
+.password-boxes {
+    display: flex;
+    gap: clamp(7px, 1.5vw, 11px);
+    margin: 24px 0 20px;
+}
+
+.password-box {
+    width: clamp(37px, 5vw, 44px);
+    height: clamp(37px, 5vw, 44px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #694d78;
+    font-size: 23px;
+    font-weight: 700;
+    background: rgba(255,255,255,.7);
+    border: 2px solid #e0bfd1;
+    border-radius: 10px;
+    transition: .2s;
+}
+
+.password-box.active {
+    border-color: #b36d9b;
+    background: white;
+    box-shadow: 0 0 10px rgba(179,109,155,.25);
+}
+
+.password-box.filled {
+    background: white;
+    border-color: #a57ab9;
+}
+
+/* NUMBER PAD */
+
+.number-pad {
+    display: grid;
+    grid-template-columns: repeat(3, clamp(48px, 5.8vw, 56px));
+    gap: clamp(8px, 1.5vw, 12px) clamp(10px, 1.8vw, 15px);
+}
+
+.key {
+    width: clamp(48px, 5.8vw, 56px);
+    height: clamp(48px, 5.8vw, 56px);
+    border: 1px solid #f4d6e3;
+    border-radius: 17px;
+    background: rgba(255,255,255,.94);
+    color: #594267;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(80,50,100,.12);
+    transition: transform .15s, background .15s, box-shadow .15s;
+}
+
+.key:hover {
+    background: #fff0f7;
+    transform: translateY(-3px);
+    box-shadow: 0 7px 13px rgba(180,100,140,.16);
+}
+
+.key:active { transform: scale(.92); }
+
+.key-number {
+    font-size: 16px;
+    line-height: 1.15;
+    font-weight: 700;
+}
+
+.key-emoji {
+    font-size: 12px;
+    line-height: 1.1;
+}
+
+.special-key { color: #c15d91; }
+
+.special-symbol {
+    font-size: 17px;
+    line-height: 1.15;
+    font-weight: 700;
+}
+
+.passcode-message {
+    min-height: 25px;
+    margin-top: 17px;
+    color: #896d99;
+    font-size: clamp(10px, 1.3vw, 12px);
+    font-weight: 600;
+    text-align: center;
+}
+
+.passcode-message.error {
+    color: #d63862;
+    animation: shake .3s;
+}
+
+.passcode-message.success { color: #278b69; }
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* FEEDBACK */
+
+.feedback-view {
+    width: 100%;
+    min-height: 390px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    animation: feedbackAppear .45s ease both;
+}
+
+@keyframes feedbackAppear {
+    from { opacity: 0; transform: translateY(12px) scale(.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.feedback-animation {
+    display: block;
+    width: min(100%, 235px);
+    height: 190px;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+
+.feedback-title {
+    color: #b34f7e !important;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(17px, 2.2vw, 22px) !important;
+    line-height: 1.5;
+    max-width: 310px;
+}
+
+.feedback-subtitle {
+    color: #98758a;
+    font-size: 11px;
+    line-height: 1.7;
+    margin-top: 8px;
+    max-width: 300px;
+}
+
+.try-again-btn {
+    margin-top: 18px;
+    padding: 11px 28px;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #ff85b3, #e85c98);
+    box-shadow: 0 7px 17px rgba(237,133,172,.3);
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+}
+
+.try-again-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(237,133,172,.4);
+}
+
+/* TABLET */
+
+@media (max-width: 760px) {
+    .passcode-card { max-width: 560px; }
+    .bear-frame { max-width: 240px; }
+    .bear-section, .keypad-section { padding: 22px 12px; }
+    .feedback-view { min-height: 350px; }
+}
+
+/* MOBILE */
+
+@media (max-width: 560px) {
+    .welcome-screen { padding: 12px; }
+
+    .welcome-card {
+        width: 100%;
+        min-height: 0;
+        padding: 22px 15px;
+        border-radius: 24px;
+    }
+
+    .couple-stage { height: clamp(145px, 25vh, 190px); }
+    .welcome-bears { width: min(100%, 190px); }
+
+    .waiting-label { font-size: 8px; letter-spacing: 1.8px; }
+    .just-for-you { font-size: clamp(29px, 8vw, 37px); margin-top: 6px; }
+    .recipient-name { font-size: 45px; }
+    .recipient-line { min-height: 50px; }
+    .welcome-message { font-size: 9px; line-height: 1.7; }
+
+    .countdown-card { gap: 6px; margin-top: 14px; }
+    .countdown-unit { min-height: 68px; border-radius: 12px; }
+    .countdown-number { font-size: 25px; }
+    .countdown-unit > span { font-size: 7px; letter-spacing: 1.2px; }
+
+    .start-button {
+        padding: 13px 24px;
+        font-size: 12px;
+        margin-top: 20px;
+    }
+
+    .passcode-screen {
+        align-items: flex-start;
+        justify-content: center;
+        padding: 12px;
+        overflow-y: auto;
+    }
+
+    .passcode-card {
+        width: 100%;
+        max-width: 390px;
+        grid-template-columns: 1fr;
+        margin: auto 0;
+        border-radius: 18px;
+    }
+
+    .bear-section { padding: 17px 12px 14px; }
+    .bear-heading { font-size: clamp(13px, 4vw, 16px); margin-bottom: 10px; }
+
+    .bear-frame {
+        width: min(100%, 240px);
+        height: clamp(130px, 35vw, 170px);
+        border-radius: 18px;
+    }
+
+    .bear-names { font-size: 15px; margin-top: 7px; }
+    .bear-section h2 { font-size: 19px; margin-top: 9px; }
+    .bear-section p { font-size: 10px; margin-top: 3px; }
+    .keypad-section { padding: 16px 12px 18px; }
+    .lock-icon { font-size: 25px; margin-bottom: 3px; }
+    .keypad-section h2 { font-size: 21px; }
+    .keypad-subtitle { font-size: 10px; }
+    .password-boxes { margin: 14px 0; gap: 9px; }
+    .password-box { width: 38px; height: 38px; font-size: 19px; }
+    .number-pad { grid-template-columns: repeat(3, 48px); gap: 8px 13px; }
+    .key { width: 48px; height: 48px; }
+    .passcode-message { margin-top: 10px; font-size: 10px; }
+    .feedback-view { min-height: 310px; padding: 8px 0; }
+    .feedback-animation { height: 155px; width: min(100%, 205px); }
+}
+
+/* VERY SMALL MOBILE */
+
+@media (max-width: 350px) {
+    .welcome-card { padding: 20px 12px; }
+    .couple-stage { height: 140px; }
+    .welcome-bears { width: 170px; }
+    .recipient-name { font-size: 42px; }
+    .countdown-unit { min-height: 62px; }
+    .countdown-number { font-size: 22px; }
+    .passcode-screen { padding: 8px; }
+    .passcode-card { max-width: 300px; }
+    .bear-frame { height: 120px; max-width: 210px; }
+    .keypad-section { padding: 12px 8px; }
+    .number-pad { gap: 7px 10px; }
+}
+
+/* SHORT MOBILE */
+
+@media (max-height: 650px) and (max-width: 760px) {
+    .welcome-screen { align-items: flex-start; }
+    .welcome-card { margin: auto; padding-top: 14px; padding-bottom: 14px; }
+    .couple-stage { height: 105px; margin-bottom: 5px; }
+    .welcome-bears { width: 125px; }
+    .just-for-you { margin-top: 4px; }
+    .recipient-line { min-height: 42px; }
+    .love-note { margin-top: 8px; }
+    .countdown-card { margin-top: 10px; }
+    .countdown-unit { min-height: 58px; }
+
+    .passcode-screen { align-items: flex-start; overflow-y: auto; }
+    .passcode-card { margin: 0 auto; }
+    .bear-section { padding-top: 12px; padding-bottom: 10px; }
+    .bear-frame { height: 115px; }
+    .bear-heading { margin-bottom: 8px; }
+    .bear-section h2 { margin-top: 7px; }
+    .keypad-section { padding-top: 12px; padding-bottom: 12px; }
+    .password-boxes { margin: 10px 0; }
+    .passcode-message { margin-top: 8px; }
+    .feedback-view { min-height: 275px; }
+    .feedback-animation { height: 130px; }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="floating-decor" aria-hidden="true">
+    <span>♡</span>
+    <span>✧</span>
+    <span>♥</span>
+    <span>♡</span>
+    <span>✦</span>
+</div>
+
+<!-- BACKGROUND MUSIC -->
+
+<audio id="firstPageMusic" src="music/music1.mp3" loop preload="auto"></audio>
+
+
+<!-- FIRST SCREEN -->
+
+<main class="welcome-screen" id="welcomeScreen">
+
+    <section class="welcome-card">
+
+        <span class="corner-decor decor-one">♡</span>
+        <span class="corner-decor decor-two">✦</span>
+        <span class="corner-decor decor-three">♡</span>
+        <span class="corner-decor decor-four">✧</span>
+
+        <div class="couple-stage">
+
+            <img
+                src="bubu_dudu_welcome.png"
+                alt="Bubu and Dudu"
+                class="welcome-bears"
+            >
+
+            <div class="love-hearts" aria-hidden="true">
+                <span>♥</span>
+                <span>💗</span>
+                <span>♡</span>
+                <span>♥</span>
+                <span>💖</span>
+            </div>
+
+        </div>
+
+        <p class="waiting-label">
+            SOMETHING BEAUTIFUL IS WAITING
+        </p>
+
+        <h1 class="just-for-you">
+            Just for you,
+        </h1>
+
+        <div class="recipient-line">
+            <span class="recipient-name">Rasmalai</span>
+            <span class="recipient-flower">🌸</span>
+        </div>
+
+        <p class="welcome-message">
+            A little surprise is waiting just for you.<br>
+            Stay up a little longer, something lovely is on its way.
+        </p>
+
+        <div class="love-note">
+            <span>♡</span>
+            MADE WITH LOTS OF LOVE
+            <span>♡</span>
+        </div>
+
+
+        <!-- PLAY BUTTON: COUNTDOWN ABHI HIDDEN HAI -->
+
+        <button type="button" class="start-button" id="startButton">
+            ♫ Play Music & Continue
+        </button>
+
+
+        <!-- COUNTDOWN: BUTTON CLICK KE BAAD DIKHEGA -->
+
+        <div class="countdown-area" id="countdownArea" hidden>
+
+            <div class="countdown-card">
+
+                <div class="countdown-unit">
+                    <div class="countdown-number" id="countDays">0</div>
+                    <span>DAYS</span>
+                </div>
+
+                <div class="countdown-unit">
+                    <div class="countdown-number" id="countHours">00</div>
+                    <span>HOURS</span>
+                </div>
+
+                <div class="countdown-unit">
+                    <div class="countdown-number" id="countMinutes">00</div>
+                    <span>MINS</span>
+                </div>
+
+                <div class="countdown-unit">
+                    <div class="countdown-number" id="countSeconds">05</div>
+                    <span>SECS</span>
+                </div>
+
+            </div>
+
+            <p class="timer-note" id="timerNote">
+                Your little surprise opens automatically ❤️
+            </p>
+
+            <div class="early-access">
+                🔒 &nbsp; A LITTLE SURPRISE IS WAITING
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- PASSWORD SCREEN -->
+
+<section class="passcode-screen" id="passcodeScreen" aria-hidden="true">
+
+    <div class="passcode-card">
+
+        <div class="bear-section">
+
+            <div class="bear-heading">
+                Surprise for My Rasmalai ❤️
+            </div>
+
+            <div class="bear-frame">
+                <img
+                    src="bubu_dudu_hug_heart.gif"
+                    alt="Bubu and Dudu hugging with a heart"
+                    class="bear-animation"
+                >
+            </div>
+
+            <div class="bear-names">
+                Bubu <span>♥</span> Dudu
+            </div>
+
+            <h2>Made with Love</h2>
+
+            <p>A special surprise is waiting for you...</p>
+
+        </div>
+
+
+        <div class="keypad-section">
+
+            <div class="keypad-content" id="keypadContent">
+
+                <div class="lock-icon">🔐</div>
+
+                <h2>Enter a passcode</h2>
+
+                <p class="keypad-subtitle">
+                    Enter the 4-digit secret passcode ❤️
+                </p>
+
+                <div class="password-boxes">
+                    <div class="password-box" id="box1"></div>
+                    <div class="password-box" id="box2"></div>
+                    <div class="password-box" id="box3"></div>
+                    <div class="password-box" id="box4"></div>
+                </div>
+
+                <div class="number-pad">
+
+                    <button type="button" class="key" data-number="1">
+                        <span class="key-number">1</span>
+                        <span class="key-emoji">🍓</span>
+                    </button>
+
+                    <button type="button" class="key" data-number="2">
+                        <span class="key-number">2</span>
+                        <span class="key-emoji">💗</span>
+                    </button>
+
+                    <button type="button" class="key" data-number="3">
+                        <span class="key-number">3</span>
+                        <span class="key-emoji">🌷</span>
+                    </button>
+
+                    <button type="button" class="key" data-number="4">
+                        <span class="key-number">4</span>
+                        <span class="key-emoji">🧸</span>
+                    </button>
+
+                    <button type="button" class="key" data-number="5">
+                        <span class="key-number">5</span>
+                        <span class="key-emoji">✨</span>
+                    </button>
+
+                    <button type="button" class="key" data-number="6">
+                        <span class="key-number">6</span>
+                        <span class="key-emoji">🎀</span>
+                    </button>
+
+                    <button type="button" class="key" data-number="7">
+                        <span class="key-number">7</span>
+                        <span class="key-emoji">🌙</span>
+                    </button>
+
+                    <button type="button" class="key" data-number="8">
+                        <span class="key-number">8</span>
+                        <span class="key-emoji">🦋</span>
+                    </button>
+
+                    <button type="button" class="key" data-number="9">
+                        <span class="key-number">9</span>
+                        <span class="key-emoji">🌸</span>
+                    </button>
+
+                    <button type="button" class="key special-key" id="deleteKey">
+                        <span class="special-symbol">⌫</span>
+                        <span class="key-emoji">🩷</span>
+                    </button>
+
+                    <button type="button" class="key" data-number="0">
+                        <span class="key-number">0</span>
+                        <span class="key-emoji">🍒</span>
+                    </button>
+
+                    <button type="button" class="key special-key" id="clearKey">
+                        <span class="special-symbol">C</span>
+                        <span class="key-emoji">💞</span>
+                    </button>
+
+                </div>
+
+                <div class="passcode-message" id="passcodeMessage" aria-live="polite">
+                    Your secret is waiting... ❤️
+                </div>
+
+            </div>
+
+
+            <div class="feedback-view" id="feedbackView" hidden>
+
+                <img
+                    class="feedback-animation"
+                    id="feedbackAnimation"
+                    src="bubu_dudu_wrong_password.gif"
+                    alt="Bubu and Dudu animation"
+                >
+
+                <h2 class="feedback-title" id="feedbackTitle">
+                    Rasmalai, tumne galat password kaise dala? 🥺
+                </h2>
+
+                <p class="feedback-subtitle" id="feedbackSubtitle">
+                    Bubu aur Dudu tumhara wait kar rahe hain! 💗
+                </p>
+
+                <button type="button" class="try-again-btn" id="tryAgainButton">
+                    Try Again 💗
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =========================================
+   SETTINGS
+========================================= */
+
+// Testing ke liye 5 seconds.
+// Final countdown ke liye is value ko change kar sakte ho.
+const TEST_SECONDS = 5;
+
+// Actual opening date set karna ho toh:
+// const openingDate = new Date("2026-12-04T00:00:00");
+// Filhaal null ka matlab testing countdown.
+const openingDate = null;
+
+
+/* =========================================
+   ELEMENTS
+========================================= */
+
+const firstPageMusic = document.getElementById("firstPageMusic");
+
+const startButton = document.getElementById("startButton");
+const countdownArea = document.getElementById("countdownArea");
+
+const welcomeScreen = document.getElementById("welcomeScreen");
+const passcodeScreen = document.getElementById("passcodeScreen");
+
+const countDays = document.getElementById("countDays");
+const countHours = document.getElementById("countHours");
+const countMinutes = document.getElementById("countMinutes");
+const countSeconds = document.getElementById("countSeconds");
+const timerNote = document.getElementById("timerNote");
+
+const MUSIC_TIME_KEY = "rasmalaiMusicTime";
+
+let countdownTimer = null;
+let transitionStarted = false;
+let countdownStarted = false;
+
+
+/* =========================================
+   MUSIC SETTINGS
+========================================= */
+
+firstPageMusic.loop = true;
+firstPageMusic.volume = 0.55;
+firstPageMusic.preload = "auto";
+
+
+/* =========================================
+   SAVE MUSIC TIME
+========================================= */
+
+function saveMusicTime() {
+
+    if (
+        Number.isFinite(firstPageMusic.currentTime) &&
+        firstPageMusic.currentTime >= 0
+    ) {
+        localStorage.setItem(
+            MUSIC_TIME_KEY,
+            String(firstPageMusic.currentTime)
+        );
+    }
+
+}
+
+firstPageMusic.addEventListener("timeupdate", saveMusicTime);
+firstPageMusic.addEventListener("pause", saveMusicTime);
+
+window.addEventListener("pagehide", saveMusicTime);
+
+document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") {
+        saveMusicTime();
+    }
+});
+
+
+/* =========================================
+   START BUTTON CLICK
+========================================= */
+
+startButton.addEventListener("click", async () => {
+
+    if (countdownStarted) return;
+
+    countdownStarted = true;
+
+    // Button ko disable kar do taaki double click na ho.
+    startButton.disabled = true;
+    startButton.textContent = "♫ Starting your surprise...";
+
+    // User ke direct click par music start hoga.
+    try {
+
+        await firstPageMusic.play();
+
+        startButton.hidden = true;
+
+        // Countdown screen reveal karo.
+        countdownArea.hidden = false;
+
+        // Music aur countdown ek saath start honge.
+        startCountdown();
+
+    } catch (error) {
+
+        console.error("Music could not start:", error);
+
+        countdownStarted = false;
+        startButton.disabled = false;
+        startButton.textContent = "Tap Again to Play Music ♫";
+
+        alert("Music start nahi hua. Ek baar button phir tap karo.");
+
+    }
+
+});
+
+
+/* =========================================
+   COUNTDOWN MESSAGE
+========================================= */
+
+if (openingDate === null) {
+
+    timerNote.textContent =
+        "Your little surprise opens automatically ❤️";
+
+} else {
+
+    timerNote.textContent =
+        "Your surprise opens at midnight on 4 December ❤️";
+
+}
+
+
+/* =========================================
+   FORMAT TIME
+========================================= */
+
+function formatTime(value) {
+    return String(value).padStart(2, "0");
+}
+
+
+/* =========================================
+   START COUNTDOWN
+========================================= */
+
+function startCountdown() {
+
+    const startTime = Date.now();
+
+    let openingDeadline;
+
+    if (openingDate === null) {
+
+        openingDeadline =
+            startTime + (TEST_SECONDS * 1000);
+
+    } else if (startTime < openingDate.getTime()) {
+
+        openingDeadline =
+            openingDate.getTime();
+
+    } else {
+
+        openingDeadline =
+            startTime + (TEST_SECONDS * 1000);
+
+    }
+
+    function updateCountdown() {
+
+        const currentTime = Date.now();
+
+        const remainingMilliseconds = Math.max(
+            0,
+            openingDeadline - currentTime
+        );
+
+        const totalSeconds = Math.ceil(
+            remainingMilliseconds / 1000
+        );
+
+        const days = Math.floor(totalSeconds / 86400);
+
+        const hours = Math.floor(
+            (totalSeconds % 86400) / 3600
+        );
+
+        const minutes = Math.floor(
+            (totalSeconds % 3600) / 60
+        );
+
+        const seconds = totalSeconds % 60;
+
+        countDays.textContent = String(days);
+        countHours.textContent = formatTime(hours);
+        countMinutes.textContent = formatTime(minutes);
+        countSeconds.textContent = formatTime(seconds);
+
+        if (
+            remainingMilliseconds <= 0 &&
+            !transitionStarted
+        ) {
+            openPasswordScreen();
+        }
+
+    }
+
+    updateCountdown();
+
+    countdownTimer = setInterval(updateCountdown, 200);
+
+}
+
+
+/* =========================================
+   OPEN PASSWORD SCREEN
+========================================= */
+
+function openPasswordScreen() {
+
+    if (transitionStarted) return;
+
+    transitionStarted = true;
+
+    if (countdownTimer !== null) {
+        clearInterval(countdownTimer);
+    }
+
+    // Music ko pause nahi karna hai.
+    saveMusicTime();
+
+    welcomeScreen.classList.add("leaving");
+
+    setTimeout(() => {
+
+        welcomeScreen.style.display = "none";
+
+        passcodeScreen.classList.add("show");
+
+        passcodeScreen.setAttribute("aria-hidden", "false");
+
+    }, 850);
+
+}
+
+
+/* =========================================
+   PASSWORD SYSTEM
+========================================= */
+
+const correctPassword = "2008";
+
+let enteredPassword = "";
+let passwordLocked = false;
+let redirectTimer = null;
+
+const passwordBoxes = [
+    document.getElementById("box1"),
+    document.getElementById("box2"),
+    document.getElementById("box3"),
+    document.getElementById("box4")
+];
+
+const passcodeMessage = document.getElementById("passcodeMessage");
+
+const numberButtons = document.querySelectorAll(".key[data-number]");
+
+const deleteKey = document.getElementById("deleteKey");
+const clearKey = document.getElementById("clearKey");
+
+const keypadContent = document.getElementById("keypadContent");
+const feedbackView = document.getElementById("feedbackView");
+
+const feedbackAnimation = document.getElementById("feedbackAnimation");
+const feedbackTitle = document.getElementById("feedbackTitle");
+const feedbackSubtitle = document.getElementById("feedbackSubtitle");
+
+const tryAgainButton = document.getElementById("tryAgainButton");
+
+
+/* =========================================
+   UPDATE PASSWORD BOXES
+========================================= */
+
+function updatePasswordBoxes() {
+
+    passwordBoxes.forEach((box, index) => {
+
+        if (index < enteredPassword.length) {
+
+            box.textContent = "●";
+            box.classList.add("filled");
+
+        } else {
+
+            box.textContent = "";
+            box.classList.remove("filled");
+
+        }
+
+        box.classList.remove("active");
+
+    });
+
+    if (enteredPassword.length < 4) {
+
+        passwordBoxes[enteredPassword.length]
+            .classList.add("active");
+
+    }
+
+}
+
+
+/* =========================================
+   WRONG PASSWORD
+========================================= */
+
+function showWrongPassword() {
+
+    passwordLocked = true;
+
+    keypadContent.hidden = true;
+    feedbackView.hidden = false;
+
+    feedbackAnimation.src =
+        "bubu_dudu_wrong_password.gif";
+
+    feedbackAnimation.alt =
+        "Bubu and Dudu playfully pulling each other";
+
+    feedbackTitle.textContent =
+        "Rasmalai, tumne galat password kaise dala? 🥺";
+
+    feedbackSubtitle.textContent =
+        "Bubu aur Dudu tumhara wait kar rahe hain. Ek baar phir try karo! 💗";
+
+    tryAgainButton.hidden = false;
+
+}
+
+
+/* =========================================
+   CORRECT PASSWORD
+========================================= */
+
+function showCorrectPassword() {
+
+    passwordLocked = true;
+
+    keypadContent.hidden = true;
+    feedbackView.hidden = false;
+
+    feedbackAnimation.src =
+        "bubu_dudu_correct_password.gif";
+
+    feedbackAnimation.alt =
+        "Bubu and Dudu lovingly hugging each other";
+
+    feedbackTitle.textContent =
+        "Correct Password, Rasmalai! ❤️";
+
+    feedbackSubtitle.textContent =
+        "Bubu aur Dudu tumse bahut khush hain. Your next surprise is opening... ✨";
+
+    tryAgainButton.hidden = true;
+
+    redirectTimer = setTimeout(() => {
+
+        // Next page par jaane se pehle music time save karo.
+        saveMusicTime();
+
+        // Music1 ko yahan pause nahi kar rahe.
+        // Browser page change par first.html ka audio unload hoga.
+        window.location.href = "surprise.html";
+
+    }, 2600);
+
+}
+
+
+/* =========================================
+   CHECK PASSWORD
+========================================= */
+
+function checkPassword() {
+
+    if (enteredPassword === correctPassword) {
+
+        showCorrectPassword();
+
+    } else {
+
+        showWrongPassword();
+
+    }
+
+}
+
+
+/* =========================================
+   ADD DIGIT
+========================================= */
+
+function addDigit(number) {
+
+    if (
+        passwordLocked ||
+        enteredPassword.length >= 4 ||
+        !passcodeScreen.classList.contains("show")
+    ) {
+        return;
+    }
+
+    enteredPassword += number;
+
+    passcodeMessage.textContent =
+        "Your secret is waiting... ❤️";
+
+    passcodeMessage.className =
+        "passcode-message";
+
+    updatePasswordBoxes();
+
+    if (enteredPassword.length === 4) {
+
+        passwordLocked = true;
+
+        setTimeout(() => {
+            checkPassword();
+        }, 250);
+
+    }
+
+}
+
+
+/* =========================================
+   NUMBER BUTTON EVENTS
+========================================= */
+
+numberButtons.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        addDigit(button.dataset.number);
+
+    });
+
+});
+
+
+/* =========================================
+   DELETE LAST DIGIT
+========================================= */
+
+deleteKey.addEventListener("click", () => {
+
+    if (passwordLocked) return;
+
+    enteredPassword = enteredPassword.slice(0, -1);
+
+    passcodeMessage.textContent =
+        "Enter your secret passcode ❤️";
+
+    passcodeMessage.className =
+        "passcode-message";
+
+    updatePasswordBoxes();
+
+});
+
+
+/* =========================================
+   CLEAR ALL DIGITS
+========================================= */
+
+clearKey.addEventListener("click", () => {
+
+    if (passwordLocked) return;
+
+    enteredPassword = "";
+
+    passcodeMessage.textContent =
+        "Try again, Rasmalai ❤️";
+
+    passcodeMessage.className =
+        "passcode-message";
+
+    updatePasswordBoxes();
+
+});
+
+
+/* =========================================
+   TRY AGAIN
+========================================= */
+
+tryAgainButton.addEventListener("click", () => {
+
+    if (redirectTimer !== null) {
+
+        clearTimeout(redirectTimer);
+        redirectTimer = null;
+
+    }
+
+    enteredPassword = "";
+    passwordLocked = false;
+
+    feedbackView.hidden = true;
+    keypadContent.hidden = false;
+
+    passcodeMessage.textContent =
+        "Your secret is waiting... ❤️";
+
+    passcodeMessage.className =
+        "passcode-message";
+
+    updatePasswordBoxes();
+
+});
+
+
+/* =========================================
+   INITIAL PASSWORD STATE
+========================================= */
+
+updatePasswordBoxes();
+
+</script>
+
+</body>
+</html>
