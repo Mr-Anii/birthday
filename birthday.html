@@ -1,0 +1,1144 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Rasmalai 🎂</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  min-height:100vh;
+  overflow-x:hidden;
+  font-family:Poppins,sans-serif;
+  color:#fff;
+  background:radial-gradient(ellipse at center,#42135f 0%,#190c2d 58%,#080711 100%);
+}
+
+button{font-family:inherit;cursor:pointer}
+
+#lights{
+  position:fixed;
+  top:12px;
+  left:0;
+  width:100%;
+  display:flex;
+  justify-content:space-around;
+  z-index:5;
+  opacity:0;
+}
+
+.light{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#ffcf64;
+  box-shadow:0 0 13px 5px #ffbd55;
+  animation:twinkle 1s infinite alternate;
+}
+
+.light:nth-child(3n){
+  background:#ff68b4;
+  box-shadow:0 0 13px 5px #ff68b4;
+  animation-delay:.4s;
+}
+
+.light:nth-child(3n+1){
+  background:#69e9ff;
+  box-shadow:0 0 13px 5px #69e9ff;
+  animation-delay:.7s;
+}
+
+@keyframes twinkle{
+  to{opacity:.25;transform:scale(.65)}
+}
+
+.screen{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  padding:75px 16px 35px;
+  position:relative;
+}
+
+.hidden{display:none!important}
+
+.intro{
+  max-width:700px;
+  animation:fadeUp 1.2s ease both;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(25px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.eyebrow{
+  font-size:11px;
+  letter-spacing:4px;
+  color:#ffc4dc;
+  margin-bottom:20px;
+}
+
+h1{
+  font-family:"Great Vibes",cursive;
+  font-size:clamp(45px,9vw,82px);
+  font-weight:400;
+  color:#ffd8e9;
+  text-shadow:0 0 15px #ff77b7,0 0 35px #e84c9b;
+}
+
+.intro p{
+  max-width:570px;
+  margin:22px auto 28px;
+  line-height:2;
+  color:#f6dce9;
+  font-size:14px;
+}
+
+.btn{
+  border:1px solid #ffc0dc;
+  color:#fff;
+  background:linear-gradient(135deg,#f47eb4,#a83f94);
+  padding:13px 25px;
+  border-radius:30px;
+  font-weight:600;
+  font-size:12px;
+  letter-spacing:.5px;
+  box-shadow:0 0 22px #f06eaa55;
+  transition:.25s;
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 30px #ff91c5;
+}
+
+.small-note{
+  font-size:10px;
+  color:#d5b1ca;
+  margin-top:15px;
+}
+
+#party{
+  width:100%;
+  max-width:850px;
+  opacity:0;
+  transform:translateY(35px);
+  transition:opacity 1.3s,transform 1.3s;
+}
+
+#party.ready{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.party-title{
+  font-family:"Great Vibes",cursive;
+  font-size:clamp(38px,7vw,65px);
+  color:#ffe3ef;
+  text-shadow:0 0 16px #ff77b7;
+  margin-bottom:8px;
+}
+
+.party-sub{
+  font-size:12px;
+  letter-spacing:2px;
+  color:#e9c4d9;
+  margin-bottom:18px;
+}
+
+.stage{
+  position:relative;
+  width:min(100%,650px);
+  height:390px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.glow{
+  position:absolute;
+  width:340px;
+  height:220px;
+  border-radius:50%;
+  background:#e95aab;
+  filter:blur(85px);
+  opacity:.23;
+  animation:glow 3s infinite alternate;
+}
+
+@keyframes glow{
+  to{opacity:.43;transform:scale(1.18)}
+}
+
+.cake-wrap{
+  position:relative;
+  width:min(88vw,510px);
+  height:255px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  animation:cakeEnter 1.7s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes cakeEnter{
+  from{opacity:0;transform:translateY(160px) scale(.7)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+.plate{
+  position:absolute;
+  bottom:4px;
+  width:95%;
+  height:28px;
+  border-radius:50%;
+  background:linear-gradient(#fff,#c9c5df);
+  box-shadow:0 0 25px #fff8;
+}
+
+.cake{
+  position:absolute;
+  bottom:22px;
+  width:82%;
+  height:155px;
+  border-radius:14px 14px 9px 9px;
+  background:linear-gradient(180deg,#ffd5a9 0%,#ffc98e 52%,#e9a46f 100%);
+  box-shadow:inset 0 -9px 0 #d98d70,0 10px 25px #09031388;
+  border:2px solid #ffe9c9;
+  overflow:visible;
+  transition:transform .9s;
+}
+
+.cake:before{
+  content:"";
+  position:absolute;
+  top:-10px;
+  left:-2px;
+  width:calc(100% + 4px);
+  height:30px;
+  background:#ff79b6;
+  border-radius:15px 15px 8px 8px;
+  box-shadow:inset 0 5px 0 #ffadd0;
+}
+
+.drip{
+  position:absolute;
+  top:10px;
+  width:16px;
+  height:34px;
+  background:#ff79b6;
+  border-radius:0 0 10px 10px;
+  z-index:2;
+}
+
+.drip:nth-child(1){left:12%}
+.drip:nth-child(2){left:31%;height:43px}
+.drip:nth-child(3){left:53%;height:29px}
+.drip:nth-child(4){left:75%;height:40px}
+
+.cake-dots{
+  position:absolute;
+  bottom:12px;
+  left:0;
+  width:100%;
+  display:flex;
+  justify-content:space-evenly;
+  color:#fff8df;
+  font-size:13px;
+}
+
+.cake-sticker{
+  position:absolute;
+  z-index:4;
+  width:clamp(115px,29vw,175px);
+  height:auto;
+  left:50%;
+  top:53%;
+  transform:translate(-50%,-50%);
+  filter:drop-shadow(0 4px 5px #6c304655);
+}
+
+/* TWO NUMBER CANDLES: 1 AND 8 */
+
+.candles{
+  position:absolute;
+  z-index:8;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  gap:18px;
+}
+
+.number-candle{
+  position:relative;
+  width:62px;
+  height:94px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  font-family:Arial Black,Poppins,sans-serif;
+  font-size:94px;
+  font-weight:900;
+  line-height:.95;
+  letter-spacing:-5px;
+  background:repeating-linear-gradient(
+    135deg,
+    #fff 0px,
+    #fff 9px,
+    #ff82b7 9px,
+    #ff82b7 18px
+  );
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 5px #fff8);
+}
+
+.number-candle:first-child{width:52px}
+
+.number-candle .flame{
+  position:absolute;
+  left:50%;
+  top:-22px;
+  transform:translateX(-50%);
+  width:15px;
+  height:24px;
+  background:radial-gradient(
+    ellipse at 50% 70%,
+    #fff 0 15%,
+    #ffe879 35%,
+    #ff8a32 70%,
+    transparent 72%
+  );
+  border-radius:50% 50% 45% 45%;
+  filter:drop-shadow(0 0 9px #ffcf55);
+  animation:numberFlicker .55s infinite alternate;
+  transform-origin:bottom;
+}
+
+@keyframes numberFlicker{
+  to{
+    transform:translateX(-50%) rotate(8deg) scale(.85);
+  }
+}
+
+.number-candle .smoke{
+  position:absolute;
+  top:-25px;
+  left:50%;
+  font-size:19px;
+  color:#ddd;
+  opacity:0;
+  transform:translateX(-50%);
+}
+
+.candles.off .flame{display:none}
+
+.candles.off .smoke{
+  animation:smokeUp 1.3s forwards;
+}
+
+@keyframes smokeUp{
+  0%{
+    opacity:.7;
+    transform:translate(-50%,0) scale(.5);
+  }
+  100%{
+    opacity:0;
+    transform:translate(-50%,-55px) scale(1.7);
+  }
+}
+
+/* LIVE AGE COUNTER */
+
+.age-panel{
+  width:min(100%,650px);
+  margin:0 auto 18px;
+  padding:15px 12px 17px;
+  border:1px solid #ffb8d655;
+  border-radius:17px;
+  background:linear-gradient(135deg,#ffffff12,#ffb4d510);
+  box-shadow:0 0 24px #e95aab22,inset 0 0 18px #ffffff08;
+  backdrop-filter:blur(7px);
+}
+
+.age-heading{
+  color:#ffd9e9;
+  font-size:11px;
+  letter-spacing:2px;
+  font-weight:600;
+  margin-bottom:12px;
+}
+
+.age-grid{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:7px;
+}
+
+.age-unit{
+  min-width:0;
+  padding:10px 3px 8px;
+  border-radius:10px;
+  background:#ffffff0d;
+  border:1px solid #ffc5df33;
+}
+
+.age-number{
+  display:block;
+  font-size:clamp(17px,3.5vw,25px);
+  line-height:1.3;
+  font-weight:700;
+  color:#fff0f7;
+  text-shadow:0 0 12px #ff8cbe88;
+  font-variant-numeric:tabular-nums;
+}
+
+.age-label{
+  display:block;
+  margin-top:4px;
+  color:#eac4d9;
+  font-size:9px;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+}
+
+.age-caption{
+  margin-top:12px;
+  color:#f5c7dc;
+  font-size:10px;
+  letter-spacing:.4px;
+}
+
+.slice{
+  position:absolute;
+  z-index:6;
+  right:8%;
+  bottom:28px;
+  width:25%;
+  height:125px;
+  background:linear-gradient(180deg,#ffd6aa,#e9a46f);
+  border:2px solid #ffe9c9;
+  border-radius:10px 10px 5px 5px;
+  opacity:0;
+  transform:translate(0,0) rotate(0);
+}
+
+.slice:before{
+  content:"";
+  position:absolute;
+  top:-8px;
+  left:-2px;
+  width:calc(100% + 4px);
+  height:23px;
+  background:#ff79b6;
+  border-radius:10px;
+}
+
+.cake.cut{
+  transform:translateX(-10px) scaleX(.94);
+}
+
+.cake.cut .slice{
+  opacity:1;
+  animation:pieceOut 1.2s forwards;
+}
+
+@keyframes pieceOut{
+  to{
+    transform:translate(75px,-18px) rotate(13deg);
+    opacity:0;
+  }
+}
+
+.cake.cut .cake-body{opacity:.4}
+
+.actions{
+  min-height:90px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:14px;
+  margin-top:5px;
+}
+
+#afterCut{animation:fadeUp 1s both}
+
+.balloons{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:1;
+}
+
+.balloon{
+  position:absolute;
+  bottom:-90px;
+  width:27px;
+  height:36px;
+  border-radius:50% 50% 45% 45%;
+  background:var(--c);
+  box-shadow:inset -5px -5px 8px #0003,inset 4px 4px 7px #fff6;
+  animation:rise var(--speed) linear forwards;
+}
+
+.balloon:before{
+  content:"";
+  position:absolute;
+  left:6px;
+  top:5px;
+  width:5px;
+  height:12px;
+  border-radius:50%;
+  background:#ffffff77;
+  transform:rotate(25deg);
+}
+
+.balloon:after{
+  content:"";
+  position:absolute;
+  left:12px;
+  bottom:-8px;
+  border-left:3px solid transparent;
+  border-right:3px solid transparent;
+  border-top:8px solid var(--c);
+}
+
+.string{
+  position:absolute;
+  top:42px;
+  left:13px;
+  width:1px;
+  height:27px;
+  background:#ffffff99;
+}
+
+@keyframes rise{
+  to{
+    transform:translateY(-120vh) translateX(var(--drift));
+    opacity:.9;
+  }
+}
+
+.confetti{
+  position:fixed;
+  top:-20px;
+  width:7px;
+  height:11px;
+  z-index:20;
+  pointer-events:none;
+  animation:confettiFall var(--t) linear forwards;
+}
+
+@keyframes confettiFall{
+  to{
+    transform:translate(var(--x),110vh) rotate(850deg);
+    opacity:0;
+  }
+}
+
+.footer-note{
+  color:#e4c1d7;
+  font-size:11px;
+  margin-top:10px;
+}
+
+@media(max-width:500px){
+  .stage{height:330px}
+  .cake-wrap{height:225px}
+  .cake{height:135px}
+  .number-candle{
+    height:82px;
+    width:53px;
+    font-size:82px;
+  }
+  .number-candle:first-child{width:45px}
+  .candles{
+    top:5px;
+    gap:13px;
+  }
+  .cake-sticker{width:125px}
+  .age-panel{padding:13px 7px}
+  .age-grid{gap:4px}
+  .age-unit{padding:9px 2px 7px}
+  .age-label{font-size:8px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- BIRTHDAY MUSIC -->
+<audio id="music4" src="music/music4.mp3" preload="auto" loop></audio>
+<audio id="music3" src="music/music3.mp3" preload="auto"></audio>
+
+<div id="lights"></div>
+<div class="balloons" id="balloons"></div>
+
+<section class="screen" id="intro">
+ <div class="intro">
+
+  <div class="eyebrow">A LITTLE CELEBRATION MADE JUST FOR YOU</div>
+
+  <h1>It's Your Special Day!</h1>
+
+  <p>
+   My dearest Rasmalai, today the whole little world is celebrating YOU.
+   Baby has prepared something sweet, silly and full of love.
+   So take a deep breath, make a beautiful wish and get ready! 💗
+  </p>
+
+  <button class="btn" onclick="startParty()">
+   LET THE CELEBRATION BEGIN ✨
+  </button>
+
+  <div class="small-note">A special birthday moment for Anjli ♡</div>
+
+ </div>
+</section>
+
+
+<section class="screen hidden" id="celebration">
+
+ <div id="party">
+
+  <div class="party-title">Happy Birthday, Meri Rasmalai! 🎂</div>
+
+  <div class="party-sub">A CAKE MADE WITH LOVE BY BABY</div>
+
+  <div class="stage">
+
+   <div class="glow"></div>
+
+   <div class="cake-wrap">
+
+    <div class="plate"></div>
+
+    <div class="candles" id="candles">
+
+     <div class="number-candle">
+      1
+      <i class="flame"></i>
+      <i class="smoke">〰</i>
+     </div>
+
+     <div class="number-candle">
+      8
+      <i class="flame"></i>
+      <i class="smoke">〰</i>
+     </div>
+
+    </div>
+
+    <div class="cake" id="cake">
+
+     <span class="drip"></span>
+     <span class="drip"></span>
+     <span class="drip"></span>
+     <span class="drip"></span>
+
+     <img
+      src="images/bubu-dudu.png"
+      class="cake-sticker"
+      alt="Cute bear and panda holding hands"
+     >
+
+     <div class="cake-dots">✦　✦　✦　✦　✦　✦</div>
+
+     <div class="slice"></div>
+
+    </div>
+
+   </div>
+
+  </div>
+
+
+  <!-- LIVE AGE COUNTER -->
+
+  <div class="age-panel">
+
+   <div class="age-heading">
+    ✨ EVERY SECOND OF YOUR LIFE IS SPECIAL ✨
+   </div>
+
+   <div class="age-grid">
+
+    <div class="age-unit">
+     <span class="age-number" id="ageYears">17</span>
+     <span class="age-label">Years</span>
+    </div>
+
+    <div class="age-unit">
+     <span class="age-number" id="ageMonths">11</span>
+     <span class="age-label">Months</span>
+    </div>
+
+    <div class="age-unit">
+     <span class="age-number" id="ageDays">00</span>
+     <span class="age-label">Days</span>
+    </div>
+
+    <div class="age-unit">
+     <span class="age-number" id="ageHours">00</span>
+     <span class="age-label">Hours</span>
+    </div>
+
+    <div class="age-unit">
+     <span class="age-number" id="ageMinutes">00</span>
+     <span class="age-label">Minutes</span>
+    </div>
+
+    <div class="age-unit">
+     <span class="age-number" id="ageSeconds">00</span>
+     <span class="age-label">Seconds</span>
+    </div>
+
+   </div>
+
+   <div class="age-caption">
+    Growing up beautifully, one second at a time, meri Rasmalai! 💗
+   </div>
+
+  </div>
+
+
+  <div class="actions">
+
+   <div id="wishPrompt">
+    Close your eyes, make a wish and blow the candles! 🥹
+   </div>
+
+   <button class="btn" id="blowBtn" onclick="blowCandles()">
+    🕯️ BLOW THE CANDLES
+   </button>
+
+   <button class="btn hidden" id="cutBtn" onclick="cutCake()">
+    🍰 LET'S CUT THE CAKE!
+   </button>
+
+   <div id="afterCut" class="hidden">
+
+    <h2 style="font-family:'Great Vibes';font-size:clamp(36px,7vw,58px);color:#ffd6e8;text-shadow:0 0 15px #ff80b8">
+     Happy Birthday, Meri Rasmalai! 💗
+    </h2>
+
+    <p class="footer-note">
+     One slice for you... and one BIG slice for Baby! 😂
+    </p>
+
+    <button class="btn" style="margin-top:18px" onclick="location.href='star-surprise.html'">
+     LET'S SEE ONE MORE SURPRISE ✨
+    </button>
+
+   </div>
+
+  </div>
+
+ </div>
+
+</section>
+
+
+<script>
+
+/* =====================================
+   MUSIC SYSTEM
+   MUSIC4: BIRTHDAY PAGE BACKGROUND MUSIC
+   MUSIC3: PLAYS ONCE AFTER BLOWING CANDLES
+===================================== */
+
+const music4 = document.getElementById("music4");
+const music3 = document.getElementById("music3");
+
+const MUSIC4_NORMAL_VOLUME = 0.45;
+const MUSIC4_DUCKED_VOLUME = 0.12;
+const MUSIC3_VOLUME = 0.85;
+
+let music3Started = false;
+let musicUnlocked = false;
+
+/* Initial music settings */
+
+music4.volume = MUSIC4_NORMAL_VOLUME;
+music4.loop = true;
+
+music3.volume = MUSIC3_VOLUME;
+music3.loop = false;
+
+/* Start music4 when birthday page opens */
+
+function startBirthdayMusic(){
+
+ if(musicUnlocked) return;
+
+ music4.play()
+  .then(()=>{
+   musicUnlocked = true;
+  })
+  .catch(()=>{
+   console.log("Music autoplay blocked. Waiting for user interaction.");
+  });
+
+}
+
+/* Try autoplay immediately */
+
+startBirthdayMusic();
+
+/* Browser autoplay fallback:
+   First click/tap/key can unlock music playback. */
+
+function unlockBirthdayMusic(){
+
+ if(!musicUnlocked && !music3Started){
+
+  music4.play()
+   .then(()=>{
+    musicUnlocked = true;
+   })
+   .catch(()=>{
+    console.log("Music is waiting for another interaction.");
+   });
+
+ }
+
+}
+
+document.addEventListener("pointerdown",unlockBirthdayMusic);
+document.addEventListener("keydown",unlockBirthdayMusic);
+document.addEventListener("touchstart",unlockBirthdayMusic);
+
+
+/* When music3 ends, restore music4 volume */
+
+music3.addEventListener("ended",function(){
+
+ music4.volume = MUSIC4_NORMAL_VOLUME;
+
+ music3.pause();
+
+ console.log("Music3 finished. Music4 is back to normal volume.");
+
+});
+
+
+/* BLOW CANDLES MUSIC CHANGE */
+
+function playBlowMusic(){
+
+ /* Prevent music3 from playing more than once */
+
+ if(music3Started) return;
+
+ music3Started = true;
+
+ /* Lower music4 volume */
+
+ music4.volume = MUSIC4_DUCKED_VOLUME;
+
+ /* Start music3 at higher volume */
+
+ music3.currentTime = 0;
+ music3.volume = MUSIC3_VOLUME;
+
+ music3.play().catch(error=>{
+  console.log("Music3 playback could not start:",error);
+  music4.volume = MUSIC4_NORMAL_VOLUME;
+ });
+
+}
+
+
+/* TOP DECORATIVE LIGHTS */
+
+const lights=document.getElementById("lights");
+
+for(let i=0;i<42;i++){
+
+ const l=document.createElement("span");
+
+ l.className="light";
+
+ l.style.animationDelay=(Math.random()*1.5)+"s";
+
+ lights.appendChild(l);
+
+}
+
+
+/* LIVE AGE CALCULATOR */
+
+/*
+  Birth date: 4 December 2008
+  Based on the date only, time assumed as midnight.
+  Age will automatically become 18 on 4 December 2026.
+*/
+
+function updateAge(){
+
+ const now=new Date();
+
+ const birth=new Date(2008,11,4,0,0,0);
+
+ if(now<birth)return;
+
+ let years=now.getFullYear()-birth.getFullYear();
+
+ let yearAnchor=new Date(
+  birth.getFullYear()+years,
+  birth.getMonth(),
+  birth.getDate()
+ );
+
+ if(now<yearAnchor){
+  years--;
+ }
+
+ yearAnchor=new Date(
+  birth.getFullYear()+years,
+  birth.getMonth(),
+  birth.getDate()
+ );
+
+ let months=
+  (now.getFullYear()-yearAnchor.getFullYear())*12+
+  (now.getMonth()-yearAnchor.getMonth());
+
+ let monthAnchor=new Date(
+  yearAnchor.getFullYear(),
+  yearAnchor.getMonth()+months,
+  yearAnchor.getDate()
+ );
+
+ if(monthAnchor>now){
+
+  months--;
+
+  monthAnchor=new Date(
+   yearAnchor.getFullYear(),
+   yearAnchor.getMonth()+months,
+   yearAnchor.getDate()
+  );
+
+ }
+
+ let remaining=now.getTime()-monthAnchor.getTime();
+
+ const oneDay=24*60*60*1000;
+ const oneHour=60*60*1000;
+ const oneMinute=60*1000;
+
+ const days=Math.floor(remaining/oneDay);
+
+ remaining%=oneDay;
+
+ const hours=Math.floor(remaining/oneHour);
+
+ remaining%=oneHour;
+
+ const minutes=Math.floor(remaining/oneMinute);
+
+ const seconds=Math.floor((remaining%oneMinute)/1000);
+
+
+ document.getElementById("ageYears").textContent=years;
+
+ document.getElementById("ageMonths").textContent=months;
+
+ document.getElementById("ageDays").textContent=String(days).padStart(2,"0");
+
+ document.getElementById("ageHours").textContent=String(hours).padStart(2,"0");
+
+ document.getElementById("ageMinutes").textContent=String(minutes).padStart(2,"0");
+
+ document.getElementById("ageSeconds").textContent=String(seconds).padStart(2,"0");
+
+}
+
+updateAge();
+
+setInterval(updateAge,1000);
+
+
+/* START CELEBRATION */
+
+function startParty(){
+
+ document.getElementById("intro").classList.add("hidden");
+
+ document.getElementById("celebration").classList.remove("hidden");
+
+ lights.style.opacity="1";
+
+ setTimeout(
+  ()=>document.getElementById("party").classList.add("ready"),
+  150
+ );
+
+}
+
+
+/* BALLOONS */
+
+let balloonsStarted=false;
+
+function launchBalloons(){
+
+ if(balloonsStarted)return;
+
+ balloonsStarted=true;
+
+ const layer=document.getElementById("balloons");
+
+ const colors=["#f04469","#f58dbd","#ffffff"];
+
+ setInterval(()=>{
+
+  const b=document.createElement("span");
+
+  b.className="balloon";
+
+  b.style.left=(Math.random()*96)+"%";
+
+  b.style.setProperty(
+   "--c",
+   colors[Math.floor(Math.random()*colors.length)]
+  );
+
+  b.style.setProperty(
+   "--speed",
+   (7+Math.random()*4)+"s"
+  );
+
+  b.style.setProperty(
+   "--drift",
+   (Math.random()*100-50)+"px"
+  );
+
+  const s=document.createElement("i");
+
+  s.className="string";
+
+  b.appendChild(s);
+
+  layer.appendChild(b);
+
+  setTimeout(()=>b.remove(),12000);
+
+ },520);
+
+}
+
+
+/* BLOW CANDLES */
+
+let candlesBlown = false;
+
+function blowCandles(){
+
+ /* Prevent multiple clicks from restarting music3 */
+
+ if(candlesBlown) return;
+
+ candlesBlown = true;
+
+ /* Change music exactly when candles are blown */
+
+ playBlowMusic();
+
+ const candles=document.getElementById("candles");
+
+ candles.classList.add("off");
+
+ document.getElementById("blowBtn").classList.add("hidden");
+
+ document.getElementById("wishPrompt").textContent=
+ "Your wish is on its way to the stars! 💫";
+
+ launchBalloons();
+
+ setTimeout(
+  ()=>document.getElementById("cutBtn").classList.remove("hidden"),
+  900
+ );
+
+}
+
+
+/* CELEBRATION CONFETTI */
+
+function confettiBlast(){
+
+ const colors=["#fff","#ffd166","#ff70b7","#9be7ff","#d8a6ff"];
+
+ for(let i=0;i<150;i++){
+
+  const c=document.createElement("i");
+
+  c.className="confetti";
+
+  c.style.left=Math.random()*100+"%";
+
+  c.style.background=
+   colors[Math.floor(Math.random()*colors.length)];
+
+  c.style.setProperty(
+   "--t",
+   (2+Math.random()*2.5)+"s"
+  );
+
+  c.style.setProperty(
+   "--x",
+   (Math.random()*260-130)+"px"
+  );
+
+  c.style.animationDelay=(Math.random()*.7)+"s";
+
+  document.body.appendChild(c);
+
+  setTimeout(()=>c.remove(),5000);
+
+ }
+
+}
+
+
+/* CUT CAKE */
+
+function cutCake(){
+
+ document.getElementById("cake").classList.add("cut");
+
+ document.getElementById("cutBtn").classList.add("hidden");
+
+ document.getElementById("wishPrompt").classList.add("hidden");
+
+ confettiBlast();
+
+ setTimeout(
+  ()=>document.getElementById("afterCut").classList.remove("hidden"),
+  900
+ );
+
+}
+
+</script>
+
+</body>
+</html>

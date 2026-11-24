@@ -1,0 +1,495 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Little World for My Rasmalai 💗</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    background:
+        radial-gradient(circle at 15% 20%, #fff8fb, transparent 30%),
+        radial-gradient(circle at 85% 80%, #f5e8ff, transparent 30%),
+        linear-gradient(135deg, #ffe4ed, #fceafa, #fff0e9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background-glow {
+    position: fixed;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: .38;
+    pointer-events: none;
+    animation: glowMove 9s ease-in-out infinite alternate;
+}
+
+.glow-one {
+    background: #ff9fc5;
+    top: -150px;
+    left: -120px;
+}
+
+.glow-two {
+    background: #c9a5ff;
+    bottom: -170px;
+    right: -100px;
+    animation-delay: 2s;
+}
+
+@keyframes glowMove {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(70px, 40px) scale(1.25); }
+}
+
+#stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.star {
+    position: absolute;
+    color: white;
+    text-shadow: 0 0 10px #e9a2cf;
+    animation: twinkle 2s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: .2; transform: scale(.7) rotate(0deg); }
+    to { opacity: 1; transform: scale(1.3) rotate(45deg); }
+}
+
+#hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -40px;
+    color: #ed75a9;
+    opacity: .75;
+    animation: floatHeart linear forwards;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(.7);
+        opacity: 0;
+    }
+    15% { opacity: .8; }
+    100% {
+        transform: translateY(-115vh) rotate(40deg) scale(1.3);
+        opacity: 0;
+    }
+}
+
+.main-container {
+    position: relative;
+    z-index: 5;
+    width: min(90%, 540px);
+    padding: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-card {
+    position: relative;
+    width: 100%;
+    padding: 38px 28px 32px;
+    text-align: center;
+    background: rgba(255,255,255,.76);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,.95);
+    border-radius: 32px;
+    box-shadow:
+        0 25px 70px rgba(190,105,150,.17),
+        inset 0 0 25px rgba(255,255,255,.55);
+    animation: cardAppear 1.2s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(35px) scale(.92);
+        filter: blur(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+.card-heart {
+    position: absolute;
+    color: #ed8bb5;
+    font-size: 24px;
+    animation: heartbeat 2s ease-in-out infinite;
+}
+
+.heart-left { top: 20px; left: 22px; }
+
+.heart-right {
+    top: 22px;
+    right: 22px;
+    animation-delay: .5s;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+}
+
+.top-label {
+    color: #c17e9f;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+}
+
+.bubu-container {
+    position: relative;
+    width: 100%;
+    height: 205px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 13px;
+}
+
+.bubu-gif {
+    max-width: 100%;
+    width: 230px;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 12px rgba(170,95,135,.13));
+    animation: bubuFloat 3s ease-in-out infinite;
+}
+
+@keyframes bubuFloat {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-9px) rotate(2deg); }
+}
+
+.small-heading {
+    color: #b58ba4;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.main-heading {
+    color: #69445f;
+    font-size: clamp(24px, 5vw, 34px);
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.main-heading span {
+    display: block;
+    color: #e76d9e;
+    font-family: 'Pacifico', cursive;
+    font-size: clamp(29px, 6vw, 39px);
+    font-weight: 400;
+    margin-top: 3px;
+}
+
+.description {
+    color: #a58b9d;
+    font-size: 12px;
+    line-height: 1.9;
+    margin: 16px auto 22px;
+    max-width: 360px;
+}
+
+.enter-button {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    outline: none;
+    padding: 14px 30px;
+    min-width: 220px;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #f28ab4, #d96da7, #c47bcb);
+    box-shadow:
+        0 9px 22px rgba(216,109,167,.3),
+        inset 0 1px 2px rgba(255,255,255,.5);
+    cursor: pointer;
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.enter-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.45), transparent);
+    transform: skewX(-20deg);
+    transition: left .6s ease;
+}
+
+.enter-button:hover::before { left: 150%; }
+
+.enter-button:hover {
+    transform: translateY(-4px) scale(1.035);
+    box-shadow: 0 13px 27px rgba(216,109,167,.4);
+}
+
+.enter-button:active { transform: scale(.96); }
+
+.enter-button:disabled {
+    cursor: wait;
+    opacity: .8;
+}
+
+.footer {
+    margin-top: 23px;
+    color: #c3a0b4;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.footer span { color: #e77aa9; }
+
+@media (max-width: 480px) {
+    .main-container { width: 94%; padding: 12px; }
+    .welcome-card { padding: 34px 18px 27px; border-radius: 26px; }
+    .bubu-container { height: 175px; }
+    .bubu-gif { width: 200px; }
+    .description { font-size: 11px; }
+    .enter-button { min-width: 205px; padding: 13px 20px; }
+    .footer { font-size: 8px; letter-spacing: 1.5px; }
+}
+
+@media (max-height: 650px) {
+    .welcome-card { padding-top: 22px; padding-bottom: 20px; }
+    .bubu-container { height: 135px; margin-bottom: 5px; }
+    .bubu-gif { width: 165px; }
+    .description { margin: 9px auto 14px; }
+    .footer { margin-top: 13px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background-glow glow-one"></div>
+<div class="background-glow glow-two"></div>
+
+<div id="stars"></div>
+<div id="hearts"></div>
+
+<!-- MUSIC 2 -->
+<audio id="surpriseMusic" src="music/music2.mp3" preload="auto"></audio>
+
+<main class="main-container">
+    <section class="welcome-card">
+
+        <span class="card-heart heart-left">♡</span>
+        <span class="card-heart heart-right">✧</span>
+
+        <div class="top-label">A LITTLE WORLD OF LOVE</div>
+
+        <div class="bubu-container">
+            <img
+                src="bubu_dudu_hug_heart.gif"
+                alt="Cute Bubu and Dudu"
+                class="bubu-gif"
+            >
+        </div>
+
+        <div class="small-heading">
+            A SPECIAL LITTLE SURPRISE FOR
+        </div>
+
+        <h1 class="main-heading">
+            Hello, My Dear
+            <span>Rasmalai 💗</span>
+        </h1>
+
+        <p class="description">
+            Someone has prepared a little world full of
+            memories, smiles and lots of love just for you.
+            Are you ready to explore it? 🎀
+        </p>
+
+        <button class="enter-button" id="enterButton" type="button">
+            Enter My Little World 💗
+        </button>
+
+        <div class="footer">
+            MADE WITH <span>♥</span> JUST FOR YOU
+        </div>
+
+    </section>
+</main>
+
+<script>
+/* =====================================
+   MUSIC CONTINUITY SYSTEM
+===================================== */
+
+const surpriseMusic = document.getElementById("surpriseMusic");
+
+const MUSIC_TIME_KEY = "rasmalaiMusic2Time";
+const MUSIC_STARTED_KEY = "rasmalaiMusic2Started";
+
+surpriseMusic.volume = 0.55;
+surpriseMusic.loop = true;
+
+function saveMusicTime() {
+    if (!isNaN(surpriseMusic.currentTime)) {
+        localStorage.setItem(MUSIC_TIME_KEY, surpriseMusic.currentTime);
+    }
+}
+
+function restoreMusicTime() {
+    const savedTime = Number(localStorage.getItem(MUSIC_TIME_KEY));
+
+    if (Number.isFinite(savedTime) && savedTime >= 0) {
+        if (surpriseMusic.readyState >= 1) {
+            surpriseMusic.currentTime = savedTime;
+        } else {
+            surpriseMusic.addEventListener("loadedmetadata", function restoreOnce() {
+                if (savedTime < surpriseMusic.duration) {
+                    surpriseMusic.currentTime = savedTime;
+                }
+            }, { once: true });
+        }
+    }
+}
+
+surpriseMusic.addEventListener("timeupdate", saveMusicTime);
+
+surpriseMusic.addEventListener("ended", function() {
+    surpriseMusic.currentTime = 0;
+    surpriseMusic.play().catch(() => {});
+});
+
+async function startSurpriseMusic() {
+    try {
+        await surpriseMusic.play();
+        localStorage.setItem(MUSIC_STARTED_KEY, "yes");
+    } catch (error) {
+        console.log("Browser autoplay blocked. Click to start music.");
+    }
+}
+
+restoreMusicTime();
+startSurpriseMusic();
+
+function startMusicAfterInteraction() {
+    if (surpriseMusic.paused) {
+        startSurpriseMusic();
+    }
+
+    document.removeEventListener("pointerdown", startMusicAfterInteraction);
+    document.removeEventListener("keydown", startMusicAfterInteraction);
+}
+
+document.addEventListener("pointerdown", startMusicAfterInteraction);
+document.addEventListener("keydown", startMusicAfterInteraction);
+
+
+/* =====================================
+   FLOATING HEARTS
+===================================== */
+
+const heartsContainer = document.getElementById("hearts");
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "floating-heart";
+    heart.innerHTML = Math.random() > 0.5 ? "♥" : "♡";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (15 + Math.random() * 20) + "px";
+    heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+
+    heartsContainer.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 10000);
+}
+
+setInterval(createHeart, 550);
+
+
+/* =====================================
+   TWINKLING STARS
+===================================== */
+
+const starsContainer = document.getElementById("stars");
+
+for (let i = 0; i < 35; i++) {
+    const star = document.createElement("div");
+    star.className = "star";
+    star.innerHTML = "✦";
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.top = Math.random() * 100 + "vh";
+    star.style.fontSize = (8 + Math.random() * 12) + "px";
+    star.style.animationDelay = Math.random() * 2 + "s";
+
+    starsContainer.appendChild(star);
+}
+
+
+/* =====================================
+   ENTER BUTTON
+===================================== */
+
+const enterButton = document.getElementById("enterButton");
+
+enterButton.addEventListener("click", function() {
+
+    // Navigation se pehle exact music position save karo
+    localStorage.setItem(MUSIC_TIME_KEY, surpriseMusic.currentTime);
+
+    enterButton.innerHTML = "Opening Your Surprise... 💗";
+    enterButton.disabled = true;
+
+    setTimeout(() => {
+        window.location.href = "treasure.html";
+    }, 900);
+
+});
+</script>
+
+</body>
+</html>

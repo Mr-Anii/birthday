@@ -1,0 +1,1239 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Letter for My Rasmalai 💌</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    overflow-x:hidden;
+    background:
+    radial-gradient(circle at 50% 30%,#4b2940,#211326 65%,#100b16);
+    font-family:'Poppins',sans-serif;
+    color:#553c35;
+}
+
+button{
+    font-family:inherit;
+}
+
+/* BACKGROUND */
+
+.background-hearts{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:0;
+}
+
+.bg-heart{
+    position:absolute;
+    bottom:-40px;
+    color:#ffc1d7;
+    opacity:0;
+    animation:floatHeart linear infinite;
+}
+
+@keyframes floatHeart{
+    0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:0;
+    }
+    15%{opacity:.35;}
+    85%{opacity:.25;}
+    100%{
+        transform:translateY(-110vh) rotate(35deg);
+        opacity:0;
+    }
+}
+
+/* INTRO */
+
+#intro{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px 15px;
+    position:relative;
+    z-index:2;
+    transition:opacity .8s,transform .8s;
+}
+
+.intro-content{
+    width:min(100%,470px);
+    text-align:center;
+}
+
+.eyebrow{
+    font-size:10px;
+    letter-spacing:4px;
+    color:#f5c4d9;
+    margin-bottom:28px;
+}
+
+.intro-title{
+    font-family:'Great Vibes',cursive;
+    font-size:clamp(37px,8vw,55px);
+    color:#ffe5ee;
+    font-weight:400;
+    margin-bottom:30px;
+    text-shadow:0 0 20px #ff9fc7;
+}
+
+/* ENVELOPE */
+
+.envelope{
+    width:min(100%,350px);
+    height:230px;
+    margin:auto;
+    position:relative;
+    cursor:pointer;
+    filter:drop-shadow(0 18px 22px #0007);
+    perspective:900px;
+    animation:envelopeFloat 3s ease-in-out infinite;
+}
+
+@keyframes envelopeFloat{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-9px);}
+}
+
+.envelope-back{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(140deg,#fce9dc,#e8c8b8);
+    border-radius:8px;
+}
+
+.envelope-paper{
+    position:absolute;
+    left:8%;
+    top:4%;
+    width:84%;
+    height:88%;
+    background:linear-gradient(145deg,#fff9f0,#f4e3d5);
+    border-radius:4px;
+    box-shadow:0 1px 5px #9c796555;
+}
+
+.envelope-paper:before{
+    content:"";
+    position:absolute;
+    inset:10px;
+    border:1px solid #d9b8a4;
+    opacity:.7;
+}
+
+.envelope-front{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,#f9e7d9,#e8c4b7);
+    clip-path:polygon(0 100%,0 0,50% 58%,100% 0,100% 100%);
+    border-radius:7px;
+    z-index:3;
+}
+
+.envelope-flap{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(145deg,#fff8ef,#e9d2c6);
+    clip-path:polygon(0 0,100% 0,50% 58%);
+    transform-origin:top center;
+    transform:rotateX(0deg);
+    z-index:5;
+    transition:transform 1.2s ease;
+    backface-visibility:visible;
+    filter:drop-shadow(0 3px 3px #9b776555);
+}
+
+.envelope-seal{
+    position:absolute;
+    left:50%;
+    top:54%;
+    transform:translate(-50%,-50%);
+    z-index:6;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:29px;
+    color:#fff3ed;
+    background:radial-gradient(circle at 35% 30%,#f6a3b9,#bd466e 65%,#792b4a);
+    box-shadow:0 4px 12px #87334c66,inset 0 0 7px #fff5;
+    transition:opacity .3s,transform .5s;
+}
+
+.envelope.opening .envelope-flap{
+    transform:rotateX(180deg);
+}
+
+.envelope.opening .envelope-seal{
+    opacity:0;
+    transform:translate(-50%,-50%) scale(.2);
+}
+
+.envelope.opening{
+    animation:envelopeOpen .8s forwards;
+}
+
+@keyframes envelopeOpen{
+    to{
+        transform:translateY(-25px) scale(1.04);
+    }
+}
+
+.envelope-label{
+    position:absolute;
+    z-index:4;
+    top:22%;
+    left:0;
+    width:100%;
+    text-align:center;
+    font-family:'Great Vibes',cursive;
+    font-size:30px;
+    color:#885b52;
+    transform:rotate(-3deg);
+}
+
+.envelope-small{
+    position:absolute;
+    z-index:4;
+    top:40%;
+    width:100%;
+    text-align:center;
+    font-size:9px;
+    letter-spacing:2px;
+    color:#a77d6b;
+}
+
+.intro-description{
+    color:#f1d6df;
+    font-size:13px;
+    line-height:1.8;
+    margin:28px auto 20px;
+    max-width:340px;
+}
+
+.open-button{
+    padding:15px 27px;
+    border:1px solid #ffd5e3;
+    border-radius:35px;
+    color:#632d47;
+    background:linear-gradient(135deg,#ffe5ed,#f6b7ce);
+    box-shadow:0 6px 25px #f48dbb44;
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.7px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.open-button:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 30px #f48dbb77;
+}
+
+/* LETTER STAGE */
+
+#letterStage{
+    display:none;
+    min-height:100vh;
+    padding:35px 13px 60px;
+    position:relative;
+    z-index:2;
+    opacity:0;
+    transition:opacity 1s;
+}
+
+#letterStage.show{
+    opacity:1;
+}
+
+.stage-heading{
+    color:#f6c8dc;
+    text-align:center;
+    font-size:10px;
+    letter-spacing:3px;
+    margin-bottom:24px;
+}
+
+/* PAPER */
+
+.paper-wrap{
+    width:min(100%,720px);
+    margin:auto;
+    perspective:1200px;
+}
+
+.paper{
+    position:relative;
+    min-height:650px;
+    padding:55px clamp(22px,7vw,65px);
+    overflow:hidden;
+    background:
+    radial-gradient(ellipse at 15% 15%,#fffdf2,transparent 35%),
+    radial-gradient(ellipse at 90% 90%,#dfc19466,transparent 35%),
+    linear-gradient(120deg,#f1dfbf,#fff1d9 35%,#f3dfbd 75%,#e7cba1);
+    border:7px solid #c9a477;
+    box-shadow:0 20px 50px #0009,inset 0 0 30px #a8753d44;
+    transform-origin:top center;
+}
+
+.paper:before{
+    content:"";
+    position:absolute;
+    inset:12px;
+    border:1px solid #a77a4d88;
+    pointer-events:none;
+}
+
+.paper:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    opacity:.1;
+    background:repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 4px,
+        #80542c 5px
+    );
+}
+
+.corner{
+    position:absolute;
+    z-index:2;
+    color:#a27a4f;
+    font-size:24px;
+}
+
+.top-left{top:12px;left:17px;}
+.top-right{top:12px;right:17px;}
+.bottom-left{bottom:12px;left:17px;}
+.bottom-right{bottom:12px;right:17px;}
+
+.letter-content{
+    position:relative;
+    z-index:3;
+    max-width:550px;
+    margin:auto;
+}
+
+.date-line{
+    text-align:right;
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:16px;
+    color:#98704d;
+    margin-bottom:24px;
+}
+
+.letter-heading{
+    font-family:'Great Vibes',cursive;
+    text-align:center;
+    font-size:clamp(38px,8vw,55px);
+    color:#86523c;
+    font-weight:400;
+    margin-bottom:25px;
+}
+
+.greeting{
+    color:#70462e;
+    font-size:21px;
+    font-weight:700;
+    margin-bottom:18px;
+    font-family:'Cormorant Garamond',serif;
+}
+
+.message{
+    white-space:pre-wrap;
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(18px,3.4vw,21px);
+    line-height:1.75;
+    color:#543b2c;
+    min-height:200px;
+    overflow-wrap:anywhere;
+}
+
+.cursor{
+    display:inline-block;
+    width:2px;
+    height:20px;
+    background:#854d32;
+    animation:blink .7s infinite;
+    vertical-align:middle;
+}
+
+@keyframes blink{
+    50%{opacity:0;}
+}
+
+.signature{
+    margin-top:30px;
+    text-align:right;
+    opacity:0;
+    transform:translateY(12px);
+    transition:1s;
+}
+
+.signature.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.signature p{
+    font-family:'Cormorant Garamond',serif;
+    font-size:19px;
+    color:#855b3c;
+    font-style:italic;
+}
+
+.signature h2{
+    font-family:'Great Vibes',cursive;
+    font-size:46px;
+    color:#a34c60;
+    font-weight:400;
+    margin:5px 0;
+}
+
+/* CANDLE */
+
+.candle-glow{
+    position:absolute;
+    z-index:1;
+    top:48%;
+    left:50%;
+    width:190px;
+    height:190px;
+    border-radius:50%;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle,#ffbd4b33,transparent 70%);
+    pointer-events:none;
+}
+
+.candle{
+    position:absolute;
+    z-index:8;
+    width:42px;
+    height:105px;
+    left:3%;
+    top:48%;
+    transform:translate(-50%,-50%);
+    cursor:grab;
+    transition:opacity .5s,transform .5s;
+}
+
+.candle-body{
+    position:absolute;
+    bottom:0;
+    left:7px;
+    width:28px;
+    height:83px;
+    border-radius:5px;
+    background:linear-gradient(90deg,#bd8c5d,#fff0ce 35%,#f4d8a7 70%,#ae7a4d);
+    box-shadow:inset 0 0 8px #95643c55;
+}
+
+.candle-body:after{
+    content:"";
+    position:absolute;
+    top:0;
+    width:100%;
+    height:8px;
+    border-radius:50%;
+    background:#fff0d4;
+}
+
+.wick{
+    position:absolute;
+    left:20px;
+    bottom:82px;
+    width:3px;
+    height:12px;
+    background:#49301f;
+}
+
+.flame{
+    position:absolute;
+    left:12px;
+    bottom:91px;
+    width:19px;
+    height:31px;
+    border-radius:50% 50% 40% 40%;
+    background:radial-gradient(ellipse at 50% 75%,#fff7b0,#ffc44f 42%,#ff7c24 75%,transparent);
+    filter:drop-shadow(0 0 10px #ffb23b);
+    transform-origin:bottom center;
+    animation:flicker .55s infinite alternate;
+}
+
+@keyframes flicker{
+    from{transform:rotate(-5deg) scale(.95);}
+    to{transform:rotate(5deg) scale(1.08);}
+}
+
+.candle.hide{
+    opacity:0;
+    transform:translate(-50%,-50%) scale(.2);
+    pointer-events:none;
+}
+
+/* SLIDER */
+
+.slider-area{
+    width:min(100%,480px);
+    margin:25px auto 0;
+    text-align:center;
+    color:#f3dfbd;
+    transition:opacity .5s;
+}
+
+.slider-area.hide{
+    opacity:0;
+    pointer-events:none;
+    height:0;
+    margin:0 auto;
+    overflow:hidden;
+}
+
+.slider-label{
+    font-size:11px;
+    letter-spacing:1px;
+    margin-bottom:13px;
+}
+
+#candleSlider{
+    width:100%;
+    accent-color:#f2b5ce;
+    cursor:pointer;
+}
+
+.slider-hint{
+    font-size:13px;
+    margin-top:9px;
+    color:#e9c9d6;
+}
+
+/* FEEDBACK */
+
+#feedbackButton{
+    display:none;
+    margin:35px auto 0;
+    padding:15px 28px;
+    border:1px solid #f7c7dc;
+    border-radius:35px;
+    background:linear-gradient(135deg,#f9d7e5,#e9a7c3);
+    color:#642e48;
+    font-weight:600;
+    font-size:12px;
+    cursor:pointer;
+    box-shadow:0 7px 25px #0005;
+    animation:softPulse 2s infinite;
+}
+
+@keyframes softPulse{
+    50%{box-shadow:0 0 24px #ff9ec7aa;}
+}
+
+#feedbackPanel{
+    display:none;
+    width:min(100%,600px);
+    margin:30px auto 0;
+    padding:28px 22px;
+    border:1px solid #f4c8da;
+    border-radius:20px;
+    background:linear-gradient(145deg,#fff1f6,#f8dce8);
+    box-shadow:0 15px 35px #0005;
+    animation:feedbackIn .7s ease;
+}
+
+@keyframes feedbackIn{
+    from{opacity:0;transform:translateY(25px);}
+    to{opacity:1;transform:translateY(0);}
+}
+
+.feedback-title{
+    font-family:'Great Vibes',cursive;
+    font-size:40px;
+    text-align:center;
+    color:#9b496b;
+}
+
+.feedback-subtitle{
+    text-align:center;
+    font-size:12px;
+    color:#86566b;
+    margin:8px 0 22px;
+}
+
+.feedback-question{
+    font-size:13px;
+    font-weight:600;
+    color:#71445a;
+    margin:20px 0 12px;
+}
+
+.options{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.option{
+    display:block;
+    cursor:pointer;
+}
+
+.option input{
+    display:none;
+}
+
+.option span{
+    display:block;
+    padding:13px 8px;
+    text-align:center;
+    font-size:12px;
+    color:#70475a;
+    border:1px solid #e7b7cb;
+    border-radius:12px;
+    background:#fff9fb;
+    transition:.25s;
+}
+
+.option input:checked + span{
+    background:#eeb5cc;
+    border-color:#b85d82;
+    color:#5a2840;
+    box-shadow:0 3px 12px #b85d8233;
+    transform:translateY(-2px);
+}
+
+#feedbackText{
+    width:100%;
+    min-height:115px;
+    resize:vertical;
+    padding:14px;
+    border:1px solid #dfb3c4;
+    border-radius:12px;
+    outline:none;
+    background:#fffafc;
+    font-family:'Poppins',sans-serif;
+    font-size:12px;
+    color:#573b4a;
+}
+
+#feedbackText:focus{
+    border-color:#b85d82;
+    box-shadow:0 0 0 3px #eeb5cc55;
+}
+
+.submit-feedback{
+    display:block;
+    width:100%;
+    margin-top:17px;
+    padding:14px;
+    border:none;
+    border-radius:30px;
+    color:white;
+    background:linear-gradient(135deg,#bd5d83,#8f3e65);
+    font-weight:600;
+    font-size:12px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.submit-feedback:hover{
+    transform:translateY(-3px);
+    box-shadow:0 7px 18px #a94d7555;
+}
+
+#thankYou{
+    display:none;
+    margin-top:20px;
+    padding:18px;
+    border-radius:15px;
+    background:#f7e0e9;
+    color:#78425a;
+    text-align:center;
+    font-family:'Cormorant Garamond',serif;
+    font-size:21px;
+    line-height:1.5;
+}
+
+.footer-note{
+    text-align:center;
+    color:#e6c5d4;
+    font-size:11px;
+    margin-top:30px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+    .envelope{
+        height:210px;
+        max-width:320px;
+    }
+
+    .paper{
+        min-height:650px;
+        padding:48px 22px 45px;
+        border-width:5px;
+    }
+
+    .message{
+        font-size:18px;
+        line-height:1.7;
+    }
+
+    .options{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC 2 -->
+
+<audio id="music2" src="music/music2.mp3" preload="auto"></audio>
+
+<div class="background-hearts" id="backgroundHearts"></div>
+
+<!-- INTRO / ENVELOPE -->
+
+<section id="intro">
+<div class="intro-content">
+
+    <div class="eyebrow">A LITTLE SURPRISE FROM BABY</div>
+
+    <h1 class="intro-title">Something Special for You ♡</h1>
+
+    <div class="envelope" id="envelope" onclick="openLetter()">
+
+        <div class="envelope-back"></div>
+        <div class="envelope-paper"></div>
+
+        <div class="envelope-label">
+            To My Dearest Rasmalai
+        </div>
+
+        <div class="envelope-small">
+            WRITTEN WITH LOVE
+        </div>
+
+        <div class="envelope-front"></div>
+        <div class="envelope-flap"></div>
+
+        <div class="envelope-seal">♥</div>
+
+    </div>
+
+    <p class="intro-description">
+        Some feelings are too special to express in a simple message.
+        So Baby has written a little letter, only for you. 💌
+    </p>
+
+    <button class="open-button" onclick="openLetter()">
+        OPEN SOME WISHES FOR MY RASMALAI 💗
+    </button>
+
+</div>
+</section>
+
+
+<!-- LETTER PAGE -->
+
+<section id="letterStage">
+
+    <div class="stage-heading">
+        A LETTER WRITTEN WITH ENDLESS LOVE
+    </div>
+
+    <div class="paper-wrap">
+
+        <div class="paper" id="paper">
+
+            <span class="corner top-left">❦</span>
+            <span class="corner top-right">❦</span>
+            <span class="corner bottom-left">❦</span>
+            <span class="corner bottom-right">❦</span>
+
+            <div class="candle-glow"></div>
+
+            <div class="letter-content">
+
+                <div class="date-line">
+                    A special day, a special letter...
+                </div>
+
+                <h1 class="letter-heading">
+                    My Dearest Rasmalai
+                </h1>
+
+                <div class="greeting">
+                    Happy Birthday Meri Rasmalai! ☺️ 🎀💟
+                </div>
+
+                <div class="message" id="message"></div>
+
+                <div class="signature" id="signature">
+                    <p>With More Love,</p>
+                    <h2>Your Baby ❤️</h2>
+                    <p>Forever your secret keeper! ♡</p>
+                </div>
+
+            </div>
+
+            <!-- CANDLE -->
+
+            <div class="candle" id="candle">
+                <div class="candle-body"></div>
+                <div class="wick"></div>
+                <div class="flame"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- SLIDER -->
+
+    <div class="slider-area" id="sliderArea">
+
+        <div class="slider-label">
+            🕯️ MOVE THE CANDLE TO REVEAL YOUR LETTER
+        </div>
+
+        <input
+            type="range"
+            id="candleSlider"
+            min="0"
+            max="100"
+            value="0"
+        >
+
+        <div class="slider-hint" id="sliderHint">
+            Move the candle a little to begin your special wishes 💗
+        </div>
+
+    </div>
+
+    <!-- FEEDBACK BUTTON -->
+
+    <button id="feedbackButton" onclick="showFeedback()">
+        SHARE YOUR FEELINGS WITH BABY 💌
+    </button>
+
+    <!-- FEEDBACK FORM -->
+
+    <div id="feedbackPanel">
+
+        <h2 class="feedback-title">
+            A Little Feedback ♡
+        </h2>
+
+        <p class="feedback-subtitle">
+            Rasmalai, tell your Baby how you felt after opening this surprise!
+        </p>
+
+        <form id="feedbackForm">
+
+            <p class="feedback-question">
+                1. How did you like your birthday gift? 💗
+            </p>
+
+            <div class="options">
+
+                <label class="option">
+                    <input type="radio" name="gift" value="Loved it!">
+                    <span>😍 Loved it!</span>
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="gift" value="Super cute">
+                    <span>🥹 Super cute</span>
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="gift" value="Best surprise ever">
+                    <span>🎀 Best surprise ever</span>
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="gift" value="Made me emotional">
+                    <span>🥺 Made me emotional</span>
+                </label>
+
+            </div>
+
+            <p class="feedback-question">
+                2. What did you feel after seeing this surprise? 💌
+            </p>
+
+            <textarea
+                id="feedbackText"
+                placeholder="Write anything you want to tell your Baby... ❤️"
+            ></textarea>
+
+            <button class="submit-feedback" type="submit">
+                SEND MY FEELINGS TO BABY 💗
+            </button>
+
+        </form>
+
+        <div id="thankYou">
+            Awww! Thank you, meri Rasmalai! 🥹💗
+            <br>
+            Your happiness is the best gift for your Baby.
+            <br>
+            Love you forever! ❤️
+        </div>
+
+    </div>
+
+    <div class="footer-note">
+        Made with all the love in the world, only for you. ✨
+    </div>
+
+</section>
+
+
+<script>
+
+/* ===================================
+   MUSIC 2 - CONTINUOUS
+=================================== */
+
+const music2 = document.getElementById("music2");
+
+const MUSIC_KEY = "rasmalaiMusic2Time";
+
+music2.loop = true;
+music2.volume = 0.55;
+
+let musicStarted = false;
+
+function saveMusicTime(){
+
+    if(!music2.paused && !music2.ended){
+
+        localStorage.setItem(
+            MUSIC_KEY,
+            music2.currentTime
+        );
+
+    }
+}
+
+function restoreMusicTime(){
+
+    const savedTime = localStorage.getItem(MUSIC_KEY);
+
+    if(savedTime !== null){
+
+        const saved = parseFloat(savedTime);
+
+        if(Number.isFinite(saved) && saved >= 0){
+
+            music2.currentTime = saved;
+
+        }
+
+    }
+}
+
+music2.addEventListener("loadedmetadata", function(){
+
+    restoreMusicTime();
+
+    tryPlayMusic();
+
+});
+
+music2.addEventListener("timeupdate", saveMusicTime);
+
+music2.addEventListener("pause", saveMusicTime);
+
+window.addEventListener("pagehide", saveMusicTime);
+
+async function tryPlayMusic(){
+
+    if(musicStarted) return;
+
+    try{
+
+        await music2.play();
+
+        musicStarted = true;
+
+    }catch(error){
+
+        // Autoplay may be blocked by the browser.
+        // Music will start when the user interacts.
+
+    }
+
+}
+
+function unlockMusic(){
+
+    if(!musicStarted){
+
+        tryPlayMusic();
+
+    }
+
+}
+
+// Try autoplay on page open
+tryPlayMusic();
+
+// If autoplay is blocked, start after first interaction
+document.addEventListener("pointerdown", unlockMusic, {once:true});
+document.addEventListener("keydown", unlockMusic, {once:true});
+document.addEventListener("touchstart", unlockMusic, {once:true});
+
+
+/* FLOATING BACKGROUND HEARTS */
+
+const heartContainer =
+document.getElementById("backgroundHearts");
+
+for(let i=0;i<18;i++){
+
+    const heart=document.createElement("div");
+
+    heart.className="bg-heart";
+    heart.textContent=["♡","♥","✧"][i%3];
+
+    heart.style.left=Math.random()*100+"%";
+    heart.style.animationDuration=(9+Math.random()*10)+"s";
+    heart.style.animationDelay=(Math.random()*12)+"s";
+    heart.style.fontSize=(12+Math.random()*17)+"px";
+
+    heartContainer.appendChild(heart);
+}
+
+
+/* OPEN ENVELOPE */
+
+let opened=false;
+
+function openLetter(){
+
+    if(opened)return;
+    opened=true;
+
+    // Make sure music is unlocked by this interaction
+    unlockMusic();
+
+    const envelope=document.getElementById("envelope");
+    const intro=document.getElementById("intro");
+
+    envelope.classList.add("opening");
+
+    setTimeout(()=>{
+
+        intro.style.opacity="0";
+        intro.style.transform="scale(.9)";
+
+        setTimeout(()=>{
+
+            intro.style.display="none";
+
+            const stage=document.getElementById("letterStage");
+
+            stage.style.display="block";
+
+            setTimeout(()=>{
+                stage.classList.add("show");
+                window.scrollTo({top:0,behavior:"smooth"});
+            },100);
+
+        },650);
+
+    },850);
+}
+
+
+/* LETTER MESSAGE */
+
+const letterText = `God bless you baby! ❤
+
+Tu meri har secret ki locker hai, mere har mood ki doctor hai. Tere bina mera koi din complete nahi hota. Tu sirf dost nahi, meri behen hai. Allah tujhe dher saari khushiyan de, har dua qubool ho teri aur tu hamesha khush rahe meri jaan... ☺️💗
+
+Pata hai Rasmalai, kabhi-kabhi sochti hoon ki meri life mein tu na hoti toh kitni saari funny baatein, pagalpan aur secret stories miss ho jaati. Tere saath har chhoti si baat bhi ek special memory ban jaati hai.
+
+Chahe hum kitna bhi lad lein, ek doosre ko kitna bhi tang kar lein, lekin tu mere liye hamesha special rahegi. Hamari friendship aise hi hamesha strong rahe, aur hum dono kabhi apni pagal harkatein band na karein! 😂💗
+
+Allah kare teri life hamesha happiness, success, good health aur pyaar se bhari rahe. Tere chehre ki smile kabhi kam na ho. Jo bhi sapne dekhe hain tune, woh sab ek din poore hon.
+
+Aur haan, madam! Itna bhi mat badal jaana ki apne Baby ko bhool jao. Teri har khushi mein main tere saath hoon, aur jab bhi tujhe meri zaroorat ho, tera Baby hamesha yahin milega.
+
+Once again, Happy Birthday meri pyari Rasmalai! Tu bahut special hai aur hamesha rahegi. Love you loads! ☺️🎀💗`;
+
+
+/* CANDLE SLIDER */
+
+const slider=document.getElementById("candleSlider");
+const candle=document.getElementById("candle");
+const sliderArea=document.getElementById("sliderArea");
+const sliderHint=document.getElementById("sliderHint");
+
+let writingStarted=false;
+
+slider.addEventListener("input",function(){
+
+    if(writingStarted)return;
+
+    const value=Number(this.value);
+
+    candle.style.left=(3+value*.91)+"%";
+
+    if(value>=25){
+
+        writingStarted=true;
+
+        candle.classList.add("hide");
+
+        sliderArea.classList.add("hide");
+
+        sliderHint.textContent="Your wishes are appearing... 💗";
+
+        startWriting();
+    }
+
+});
+
+
+/* TYPEWRITER */
+
+function startWriting(){
+
+    const message=document.getElementById("message");
+
+    let index=0;
+
+    const cursor=document.createElement("span");
+    cursor.className="cursor";
+
+    message.appendChild(cursor);
+
+    function type(){
+
+        if(index<letterText.length){
+
+            cursor.insertAdjacentText(
+                "beforebegin",
+                letterText[index]
+            );
+
+            index++;
+
+            setTimeout(type,27);
+
+        }else{
+
+            cursor.remove();
+
+            document.getElementById("signature")
+            .classList.add("show");
+
+            // Show feedback button after the letter
+            setTimeout(()=>{
+
+                const feedbackButton=
+                document.getElementById("feedbackButton");
+
+                feedbackButton.style.display="block";
+
+                feedbackButton.scrollIntoView({
+                    behavior:"smooth",
+                    block:"center"
+                });
+
+            },1200);
+
+        }
+
+    }
+
+    type();
+}
+
+
+/* FEEDBACK SECTION */
+
+function showFeedback(){
+
+    const panel=document.getElementById("feedbackPanel");
+
+    panel.style.display="block";
+
+    setTimeout(()=>{
+        panel.scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
+    },100);
+
+}
+
+
+/* FEEDBACK SUBMISSION */
+
+document.getElementById("feedbackForm")
+.addEventListener("submit",function(event){
+
+    event.preventDefault();
+
+    const selected=document.querySelector(
+        'input[name="gift"]:checked'
+    );
+
+    const message=
+    document.getElementById("feedbackText").value.trim();
+
+    if(!selected){
+
+        alert("Rasmalai, please select how you liked the gift! 💗");
+        return;
+    }
+
+    if(!message){
+
+        alert("Baby wants to know how you felt! Write a little message. 🥹");
+        return;
+    }
+
+    // No backend is connected.
+    // Feedback is only displayed on this page.
+
+    document.getElementById("feedbackForm").style.display="none";
+
+    document.getElementById("thankYou").style.display="block";
+
+});
+
+</script>
+
+</body>
+</html>

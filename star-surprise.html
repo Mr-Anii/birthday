@@ -1,0 +1,824 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Meri Pyari Rasmalai ✨</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+ margin:0;
+ padding:0;
+ box-sizing:border-box;
+}
+
+body{
+ min-height:100vh;
+ overflow:hidden;
+ background:radial-gradient(ellipse at center,#100d1d 0%,#05050a 78%);
+ color:white;
+ font-family:Poppins,sans-serif;
+ text-align:center;
+}
+
+/* BACKGROUND */
+
+#sky{
+ position:fixed;
+ inset:0;
+ overflow:hidden;
+ pointer-events:none;
+}
+
+/* BALLOONS */
+
+.balloon{
+ position:absolute;
+ bottom:-75px;
+ width:24px;
+ height:34px;
+ border-radius:50% 50% 45% 45%;
+ background:var(--color);
+ box-shadow:
+  inset -5px -5px 8px #0005,
+  inset 4px 4px 7px #ffffff77;
+ animation:rise var(--duration) linear forwards;
+}
+
+.balloon:before{
+ content:"";
+ position:absolute;
+ top:5px;
+ left:6px;
+ width:5px;
+ height:12px;
+ border-radius:50%;
+ background:#ffffff99;
+}
+
+.balloon:after{
+ content:"";
+ position:absolute;
+ bottom:-7px;
+ left:9px;
+ border-left:4px solid transparent;
+ border-right:4px solid transparent;
+ border-top:8px solid var(--color);
+}
+
+.string{
+ position:absolute;
+ top:36px;
+ left:11px;
+ height:28px;
+ border-left:1px solid #ffffff88;
+}
+
+@keyframes rise{
+ to{
+  transform:translateY(-120vh) translateX(var(--drift));
+  opacity:.8;
+ }
+}
+
+/* HEADING */
+
+.top{
+ position:relative;
+ z-index:2;
+ padding-top:25px;
+ font-size:10px;
+ letter-spacing:3px;
+ color:#d9c4ee;
+}
+
+h1{
+ position:relative;
+ z-index:2;
+ margin:10px 8px 0;
+ font-family:"Great Vibes",cursive;
+ font-size:clamp(42px,9vw,70px);
+ font-weight:400;
+ color:white;
+ text-shadow:
+  0 0 10px white,
+  0 0 25px #c99aff;
+ opacity:0;
+ transform:translateY(15px);
+ transition:1s;
+}
+
+h1.show{
+ opacity:1;
+ transform:translateY(0);
+}
+
+/* CENTRED PORTRAIT */
+
+#portraitBox{
+ position:relative;
+ z-index:2;
+
+ width:min(92vw,430px);
+ height:min(58vh,490px);
+
+ margin:12px auto 0;
+
+ display:flex;
+ align-items:center;
+ justify-content:center;
+
+ opacity:0;
+ transition:opacity .8s;
+}
+
+#portraitBox.show{
+ opacity:1;
+}
+
+#portrait{
+ display:block;
+ width:100%;
+ height:100%;
+}
+
+/* STATUS */
+
+#status{
+ position:relative;
+ z-index:3;
+ font-size:12px;
+ color:#e5d5f1;
+ min-height:30px;
+ margin:8px 12px;
+}
+
+/* BUTTONS */
+
+button{
+ position:relative;
+ z-index:5;
+ border:1px solid #e9c9ff;
+ color:white;
+ background:linear-gradient(135deg,#b45de0,#7042b6);
+ padding:14px 27px;
+ border-radius:30px;
+ font-size:12px;
+ font-weight:700;
+ letter-spacing:1px;
+ box-shadow:0 0 24px #bd6dff66;
+ cursor:pointer;
+ transition:.3s;
+}
+
+button:hover{
+ transform:translateY(-3px);
+ box-shadow:0 0 32px #d39aff;
+}
+
+#shootBtn{
+ position:fixed;
+ bottom:25px;
+ left:50%;
+ transform:translateX(-50%);
+}
+
+#finalBtn{
+ display:none;
+ margin:5px auto 15px;
+}
+
+/* SPARKLES */
+
+.sparkle{
+ position:fixed;
+ color:white;
+ text-shadow:0 0 8px white,0 0 15px #cba0ff;
+ pointer-events:none;
+ animation:twinkle 1.3s infinite alternate;
+ z-index:2;
+}
+
+@keyframes twinkle{
+ to{
+  opacity:.2;
+  transform:scale(.5) rotate(45deg);
+ }
+}
+
+/* MOBILE */
+
+@media(max-height:650px){
+
+ .top{
+  padding-top:12px;
+ }
+
+ h1{
+  font-size:43px;
+ }
+
+ #portraitBox{
+  height:48vh;
+  margin-top:5px;
+ }
+
+ #shootBtn{
+  bottom:12px;
+ }
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC 2 -->
+
+<audio id="music2" src="music/music2.mp3" preload="auto"></audio>
+
+<div id="sky"></div>
+
+<div class="top">
+ A SKY FULL OF LITTLE SURPRISES
+</div>
+
+<h1 id="wishTitle">
+ Meri Pyari Rasmalai ♡
+</h1>
+
+<div id="portraitBox">
+ <canvas id="portrait"></canvas>
+</div>
+
+<div id="status">
+ Pop the balloons and see what Baby made for you! 💗
+</div>
+
+<button id="shootBtn" onclick="shootBalloons()">
+ 🎈 SHOOT BALLOONS
+</button>
+
+<button id="finalBtn" onclick="goToLetter()">
+ FINAL LOVE MESSAGE FOR YOU, RASMALAI 💌
+</button>
+
+<script>
+
+/* ===================================
+   MUSIC 2 - CONTINUOUS
+=================================== */
+
+const music2 = document.getElementById("music2");
+
+const MUSIC_KEY = "rasmalaiMusic2Time";
+
+music2.loop = true;
+music2.volume = 0.55;
+
+let musicStarted = false;
+
+function saveMusicTime(){
+
+    if(!music2.paused && !music2.ended){
+
+        localStorage.setItem(
+            MUSIC_KEY,
+            music2.currentTime
+        );
+
+    }
+}
+
+function restoreMusicTime(){
+
+    const savedTime = localStorage.getItem(MUSIC_KEY);
+
+    if(savedTime !== null){
+
+        const saved = parseFloat(savedTime);
+
+        if(Number.isFinite(saved) && saved >= 0){
+
+            music2.currentTime = saved;
+
+        }
+
+    }
+}
+
+music2.addEventListener("loadedmetadata", function(){
+
+    restoreMusicTime();
+
+    tryPlayMusic();
+
+});
+
+music2.addEventListener("timeupdate", saveMusicTime);
+
+music2.addEventListener("pause", saveMusicTime);
+
+window.addEventListener("pagehide", saveMusicTime);
+
+async function tryPlayMusic(){
+
+    if(musicStarted) return;
+
+    try{
+
+        await music2.play();
+
+        musicStarted = true;
+
+    }catch(error){
+
+        // Browser autoplay restrictions.
+        // Music will start on the next user interaction.
+
+    }
+
+}
+
+function unlockMusic(){
+
+    if(!musicStarted){
+
+        tryPlayMusic();
+
+    }
+}
+
+document.addEventListener("pointerdown", unlockMusic, {once:true});
+document.addEventListener("keydown", unlockMusic, {once:true});
+document.addEventListener("touchstart", unlockMusic, {once:true});
+
+/* Start music automatically if browser allows it */
+
+tryPlayMusic();
+
+
+/* ===================================
+   SETTINGS
+=================================== */
+
+const sky=document.getElementById("sky");
+
+let balloonTimer=null;
+let started=false;
+
+const colors=[
+ "#f04482",
+ "#a56aff",
+ "#ffffff"
+];
+
+
+/* ===================================
+   BALLOON CREATION
+=================================== */
+
+function createBalloon(){
+
+ const b=document.createElement("span");
+
+ b.className="balloon";
+
+ b.style.left=Math.random()*95+"%";
+
+ b.style.setProperty(
+  "--color",
+  colors[Math.floor(Math.random()*colors.length)]
+ );
+
+ b.style.setProperty(
+  "--duration",
+  (5+Math.random()*3)+"s"
+ );
+
+ b.style.setProperty(
+  "--drift",
+  (Math.random()*80-40)+"px"
+ );
+
+ const line=document.createElement("i");
+
+ line.className="string";
+
+ b.appendChild(line);
+
+ sky.appendChild(b);
+
+ setTimeout(()=>{
+  b.remove();
+ },8500);
+}
+
+function startBalloons(){
+
+ balloonTimer=setInterval(createBalloon,260);
+
+ for(let i=0;i<8;i++){
+  setTimeout(createBalloon,i*180);
+ }
+}
+
+
+/* ===================================
+   SHOOT BALLOONS
+=================================== */
+
+function shootBalloons(){
+
+ if(started)return;
+
+ started=true;
+
+ // Ensure music is playing after interaction
+ unlockMusic();
+
+ clearInterval(balloonTimer);
+
+ // Remove all balloons
+ sky.innerHTML="";
+
+ document.getElementById("shootBtn").style.display="none";
+
+ document.getElementById("status").textContent=
+ "Wait, Rasmalai... your beautiful star portrait is appearing! ✨";
+
+ document.getElementById("wishTitle").classList.add("show");
+
+ document.getElementById("portraitBox").classList.add("show");
+
+ createStarPortrait();
+}
+
+
+/* ===================================
+   CREATE STAR PORTRAIT
+=================================== */
+
+function createStarPortrait(){
+
+ const canvas=document.getElementById("portrait");
+
+ const ctx=canvas.getContext("2d");
+
+ const photo=new Image();
+
+ photo.onload=function(){
+
+  /*
+    CANVAS SIZE
+  */
+
+  const W=430;
+  const H=490;
+
+  canvas.width=W;
+  canvas.height=H;
+
+  /*
+    IMAGE PROCESSING CANVAS
+  */
+
+  const temp=document.createElement("canvas");
+
+  temp.width=350;
+  temp.height=400;
+
+  const tctx=temp.getContext("2d",{
+   willReadFrequently:true
+  });
+
+  /*
+    PHOTO CROP
+  */
+
+  const sx=photo.width*.12;
+  const sy=photo.height*.22;
+
+  const sw=photo.width*.76;
+  const sh=photo.height*.48;
+
+  /*
+    COVER CROP
+  */
+
+  const targetRatio=temp.width/temp.height;
+  const sourceRatio=sw/sh;
+
+  let cropX=sx;
+  let cropY=sy;
+  let cropW=sw;
+  let cropH=sh;
+
+  if(sourceRatio>targetRatio){
+
+   cropW=sh*targetRatio;
+   cropX=sx+(sw-cropW)/2;
+
+  }else{
+
+   cropH=sw/targetRatio;
+   cropY=sy+(sh-cropH)/2;
+
+  }
+
+  tctx.drawImage(
+   photo,
+   cropX,cropY,cropW,cropH,
+   0,0,temp.width,temp.height
+  );
+
+  const imageData=tctx.getImageData(
+   0,0,temp.width,temp.height
+  );
+
+  const pixels=imageData.data;
+
+  const stars=[];
+
+  const scaleX=W/temp.width;
+  const scaleY=H/temp.height;
+
+  for(let y=1;y<temp.height-1;y+=1.5){
+
+   for(let x=1;x<temp.width-1;x+=1.5){
+
+    const px=Math.floor(x);
+    const py=Math.floor(y);
+
+    const i=(py*temp.width+px)*4;
+
+    const r=pixels[i];
+    const g=pixels[i+1];
+    const b=pixels[i+2];
+
+    let gray=.299*r+.587*g+.114*b;
+
+    gray=(gray-115)*1.35+125;
+
+    gray=Math.max(0,Math.min(255,gray));
+
+    const brightness=gray/255;
+
+    const probability=
+     .08+Math.pow(brightness,1.55)*.82;
+
+    if(Math.random()>probability)continue;
+
+    let size;
+
+    if(gray>205){
+     size=1.2;
+    }else if(gray>135){
+     size=1.0;
+    }else{
+     size=.75;
+    }
+
+    stars.push({
+
+     x:x*scaleX,
+     y:y*scaleY,
+
+     size:size,
+     brightness:gray,
+
+     startX:Math.random()*W,
+     startY:Math.random()*H,
+
+     delay:Math.random()*250,
+
+     phase:Math.random()*Math.PI*2
+
+    });
+
+   }
+  }
+
+  /*
+    EDGE DETAILS
+  */
+
+  for(let y=2;y<temp.height-2;y+=2.5){
+
+   for(let x=2;x<temp.width-2;x+=2.5){
+
+    const i=(Math.floor(y)*temp.width+Math.floor(x))*4;
+
+    const ir=(Math.floor(y)*temp.width+Math.floor(x+2))*4;
+
+    const id=(Math.floor(y+2)*temp.width+Math.floor(x))*4;
+
+    const gray1=
+     .299*pixels[i]+
+     .587*pixels[i+1]+
+     .114*pixels[i+2];
+
+    const gray2=
+     .299*pixels[ir]+
+     .587*pixels[ir+1]+
+     .114*pixels[ir+2];
+
+    const gray3=
+     .299*pixels[id]+
+     .587*pixels[id+1]+
+     .114*pixels[id+2];
+
+    const edge=
+     Math.abs(gray1-gray2)+
+     Math.abs(gray1-gray3);
+
+    if(edge>55 && Math.random()>.9){
+
+     stars.push({
+
+      x:x*scaleX,
+      y:y*scaleY,
+
+      size:.7,
+      brightness:160,
+
+      startX:Math.random()*W,
+      startY:Math.random()*H,
+
+      delay:Math.random()*300,
+
+      phase:Math.random()*Math.PI*2
+
+     });
+    }
+
+   }
+  }
+
+  animateStars(stars,W,H);
+
+ };
+
+ photo.onerror=function(){
+
+  document.getElementById("status").textContent=
+   "Photo not found! Please check images/anjli.jpg";
+
+ };
+
+ photo.src="images/anjli.jpg";
+}
+
+
+/* ===================================
+   ANIMATE STARS
+=================================== */
+
+function animateStars(stars,W,H){
+
+ const canvas=document.getElementById("portrait");
+
+ const ctx=canvas.getContext("2d");
+
+ const start=performance.now();
+
+ const duration=5000;
+
+ function draw(now){
+
+  const elapsed=now-start;
+
+  ctx.clearRect(0,0,W,H);
+
+  stars.forEach(p=>{
+
+   const progress=Math.max(
+    0,
+    Math.min(
+     1,
+     (elapsed-p.delay)/3900
+    )
+   );
+
+   const ease=1-Math.pow(1-progress,3);
+
+   const x=p.startX+(p.x-p.startX)*ease;
+
+   const y=p.startY+(p.y-p.startY)*ease;
+
+   const twinkle=
+    .88+.12*Math.sin(now*.004+p.phase);
+
+   ctx.globalAlpha=
+    (.78*twinkle)*ease;
+
+   ctx.fillStyle="#ffffff";
+
+   ctx.shadowColor="#ffffff";
+
+   ctx.shadowBlur=1.8;
+
+   ctx.beginPath();
+
+   ctx.arc(
+    x,
+    y,
+    p.size,
+    0,
+    Math.PI*2
+   );
+
+   ctx.fill();
+
+  });
+
+  ctx.globalAlpha=1;
+
+  ctx.shadowBlur=0;
+
+  if(elapsed<duration){
+
+   requestAnimationFrame(draw);
+
+  }else{
+
+   finishPortrait();
+
+  }
+ }
+
+ requestAnimationFrame(draw);
+}
+
+
+/* ===================================
+   PORTRAIT COMPLETED
+=================================== */
+
+function finishPortrait(){
+
+ document.getElementById("status").textContent=
+ "A little portrait made of stars, just for you, Rasmalai! 🥹";
+
+ document.getElementById("finalBtn").style.display="block";
+
+ addDecorativeSparkles();
+}
+
+
+/* ===================================
+   DECORATIVE SPARKLES
+=================================== */
+
+function addDecorativeSparkles(){
+
+ for(let i=0;i<25;i++){
+
+  const s=document.createElement("span");
+
+  s.className="sparkle";
+
+  s.textContent="✦";
+
+  s.style.left=Math.random()*100+"%";
+
+  s.style.top=Math.random()*100+"%";
+
+  s.style.fontSize=
+   (7+Math.random()*10)+"px";
+
+  s.style.animationDelay=
+   Math.random()*2+"s";
+
+  document.body.appendChild(s);
+ }
+}
+
+
+/* ===================================
+   GO TO LETTER PAGE
+=================================== */
+
+function goToLetter(){
+
+    // Save the current music position before navigation
+    saveMusicTime();
+
+    // Music continues from the saved timestamp
+    location.href="letter.html";
+}
+
+
+/* ===================================
+   START
+=================================== */
+
+startBalloons();
+
+</script>
+
+</body>
+</html>

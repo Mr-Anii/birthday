@@ -1,0 +1,808 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Birthday Puzzle - Rasmalai ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffe5ee, #f4e5ff, #fff0f5);
+    font-family: 'Poppins', sans-serif;
+    color: #815b76;
+    padding: 25px 14px 45px;
+}
+
+.container {
+    max-width: 570px;
+    margin: auto;
+    background: rgba(255,255,255,0.88);
+    border: 2px solid white;
+    border-radius: 30px;
+    padding: 28px 22px;
+    text-align: center;
+    box-shadow: 0 15px 45px rgba(174,105,153,0.15);
+}
+
+.tag {
+    color: #c47b9f;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: clamp(32px, 7vw, 43px);
+    font-weight: 400;
+    color: #d66c9c;
+}
+
+.subtitle {
+    font-size: 13px;
+    line-height: 1.8;
+    color: #a18a9e;
+    margin: 10px auto 25px;
+}
+
+.divider {
+    height: 1px;
+    background: #f2e5ec;
+    margin: 20px 0 25px;
+}
+
+.reference {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-align: left;
+    margin-bottom: 22px;
+    padding: 0 5px;
+}
+
+.reference img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 17px;
+    border: 3px solid #f6d8e6;
+    box-shadow: 0 5px 15px rgba(180,100,150,0.15);
+}
+
+.reference h3 {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #bf789e;
+    margin-bottom: 5px;
+}
+
+.reference p {
+    font-size: 12px;
+    line-height: 1.7;
+    color: #a18c9f;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 22px;
+}
+
+.stat-box {
+    background: #fff8fb;
+    border: 2px solid #f4e4ec;
+    border-radius: 19px;
+    padding: 13px;
+}
+
+.stat-number {
+    font-family: 'Pacifico', cursive;
+    font-size: 27px;
+    color: #d66c91;
+}
+
+.stat-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #b28da6;
+}
+
+.puzzle-board {
+    width: 100%;
+    max-width: 440px;
+    aspect-ratio: 1;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    padding: 5px;
+    background: #f1c9db;
+    border-radius: 23px;
+    overflow: hidden;
+    box-shadow: 0 8px 22px rgba(177,100,145,0.15);
+}
+
+.tile {
+    border-radius: 5px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: transform 0.15s, opacity 0.15s;
+    min-width: 0;
+    min-height: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.tile:not(.empty):hover {
+    filter: brightness(1.08);
+}
+
+.tile.empty {
+    background: #fff0f5;
+    cursor: default;
+}
+
+.tile.movable {
+    outline: 2px solid #e66c9c;
+    outline-offset: -2px;
+}
+
+.instruction {
+    margin: 22px 0 15px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #c35d91;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    border: none;
+    border-radius: 40px;
+    padding: 12px 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.shuffle-btn {
+    background: #f8e3ef;
+    color: #bd6795;
+}
+
+.next-btn {
+    display: none;
+    background: linear-gradient(100deg, #e879ad, #b58ae8);
+    color: white;
+    box-shadow: 0 7px 18px rgba(190,110,175,0.25);
+}
+
+.next-btn.show {
+    display: inline-block;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.success-message {
+    display: none;
+    margin-top: 22px;
+    padding: 18px;
+    border-radius: 18px;
+    background: #fff0f7;
+    border: 1px solid #f4c5db;
+    animation: reveal 0.5s ease;
+}
+
+.success-message.show {
+    display: block;
+}
+
+.success-message h2 {
+    font-family: 'Pacifico', cursive;
+    color: #d66c9c;
+    font-weight: 400;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.success-message p {
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.skip-btn {
+    display: block;
+    margin: 16px auto 0;
+    padding: 11px 25px;
+    border: 1px solid #e9bad1;
+    border-radius: 30px;
+    background: white;
+    color: #bd719c;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.skip-btn:hover {
+    background: #fff0f7;
+    transform: translateY(-3px);
+}
+
+.skip-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(80, 43, 76, 0.48);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 18px;
+}
+
+.skip-overlay.show {
+    display: flex;
+}
+
+.skip-popup {
+    width: 100%;
+    max-width: 360px;
+    background: #fffafd;
+    border: 2px solid white;
+    border-radius: 25px;
+    padding: 28px 20px;
+    text-align: center;
+    box-shadow: 0 15px 45px rgba(100, 50, 90, 0.25);
+    animation: popupShow 0.3s ease;
+}
+
+.skip-popup h2 {
+    font-family: 'Pacifico', cursive;
+    font-size: 25px;
+    font-weight: 400;
+    color: #d66c9c;
+    margin-bottom: 10px;
+}
+
+.skip-popup p {
+    color: #987c96;
+    font-size: 12px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.skip-option {
+    display: block;
+    width: 100%;
+    padding: 13px 10px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(100deg, #e879ad, #b58ae8);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.skip-option:hover {
+    transform: scale(1.03);
+}
+
+.cancel-option {
+    background: #f8e9f1;
+    color: #b66c99;
+}
+
+.footer {
+    margin-top: 25px;
+    color: #bd87a7;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+@keyframes reveal {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popupShow {
+    from { opacity: 0; transform: scale(0.85); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@media(max-width: 420px) {
+    .container { padding: 25px 13px; }
+    .reference img { width: 85px; height: 85px; }
+    .reference p { font-size: 11px; }
+    .puzzle-board { gap: 4px; padding: 4px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC 2: CONTINUES FROM SURPRISE PAGE -->
+<audio id="treasureMusic" src="music/music2.mp3" preload="auto"></audio>
+
+<div class="container">
+
+    <div class="tag">A SPECIAL BIRTHDAY CHALLENGE</div>
+
+    <h1>Birthday Puzzle 🎂</h1>
+
+    <p class="subtitle">
+        Solve the puzzle to unlock your next birthday surprise 🎁
+    </p>
+
+    <div class="divider"></div>
+
+    <div class="reference">
+
+        <img
+            src="images/anjli-gufrana.jpg"
+            alt="Baby and Rasmalai"
+            id="referenceImage"
+        >
+
+        <div>
+            <h3>COMPLETE PICTURE</h3>
+            <p>Rearrange the tiles to match this photo 🧩</p>
+        </div>
+
+    </div>
+
+    <div class="stats">
+
+        <div class="stat-box">
+            <div class="stat-number" id="moves">0</div>
+            <div class="stat-label">MOVES</div>
+        </div>
+
+        <div class="stat-box">
+            <div class="stat-number" id="timer">0:00</div>
+            <div class="stat-label">TIME</div>
+        </div>
+
+    </div>
+
+    <div class="puzzle-board" id="puzzleBoard"></div>
+
+    <p class="instruction" id="instruction">
+        Solve this first to go to the next surprise! 💗
+    </p>
+
+    <div class="buttons">
+
+        <button class="btn shuffle-btn" id="shuffleBtn">
+            ↻ Shuffle Again
+        </button>
+
+        <button class="btn next-btn" id="nextBtn">
+            Go to Next Surprise ➜
+        </button>
+
+    </div>
+
+    <button class="skip-btn" id="skipBtn">
+        Skip Puzzle →
+    </button>
+
+    <div class="success-message" id="successMessage">
+
+        <h2>You Did It, Rasmalai! 🥳</h2>
+
+        <p>
+            Awww! You completed the puzzle!
+            Your Baby has another special surprise waiting for you. ❤️
+        </p>
+
+    </div>
+
+    <div class="footer">
+        MADE WITH LOVE BY YOUR BABY — GUFRANA ♡
+    </div>
+
+</div>
+
+
+<!-- SKIP CONFIRMATION POPUP -->
+
+<div class="skip-overlay" id="skipOverlay">
+
+    <div class="skip-popup">
+
+        <h2>Hey Rasmalai! 💗</h2>
+
+        <p>
+            Don't worry, Baby has kept another surprise waiting for you!
+            What would you like to do?
+        </p>
+
+        <button class="skip-option" id="cantSolve">
+            I Can't Solve This 😅
+        </button>
+
+        <button class="skip-option" id="solveLater">
+            I'll Solve It Later 💗
+        </button>
+
+        <button class="skip-option cancel-option" id="closePopup">
+            Let Me Try Again ♡
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+/* =====================================
+   MUSIC CONTINUITY SYSTEM
+===================================== */
+
+const treasureMusic = document.getElementById("treasureMusic");
+
+const MUSIC_TIME_KEY = "rasmalaiMusic2Time";
+
+treasureMusic.volume = 0.55;
+treasureMusic.loop = true;
+
+function startTreasureMusic() {
+
+    const savedTime = Number(localStorage.getItem(MUSIC_TIME_KEY));
+
+    function playFromSavedPosition() {
+
+        if (
+            Number.isFinite(savedTime) &&
+            savedTime >= 0 &&
+            savedTime < treasureMusic.duration
+        ) {
+            treasureMusic.currentTime = savedTime;
+        }
+
+        treasureMusic.play().catch(() => {
+            console.log("Browser autoplay blocked. Click anywhere to start music.");
+        });
+    }
+
+    if (treasureMusic.readyState >= 1) {
+        playFromSavedPosition();
+    } else {
+        treasureMusic.addEventListener("loadedmetadata", playFromSavedPosition, {
+            once: true
+        });
+    }
+}
+
+startTreasureMusic();
+
+function saveTreasureMusicTime() {
+    if (!isNaN(treasureMusic.currentTime)) {
+        localStorage.setItem(MUSIC_TIME_KEY, treasureMusic.currentTime);
+    }
+}
+
+treasureMusic.addEventListener("timeupdate", saveTreasureMusicTime);
+
+treasureMusic.addEventListener("ended", function() {
+    treasureMusic.currentTime = 0;
+    treasureMusic.play().catch(() => {});
+});
+
+function enableTreasureMusic() {
+    if (treasureMusic.paused) {
+        treasureMusic.play().catch(() => {});
+    }
+
+    document.removeEventListener("pointerdown", enableTreasureMusic);
+    document.removeEventListener("keydown", enableTreasureMusic);
+}
+
+document.addEventListener("pointerdown", enableTreasureMusic);
+document.addEventListener("keydown", enableTreasureMusic);
+
+
+/* =====================================
+   PUZZLE GAME
+===================================== */
+
+// Photo used in the puzzle
+const PHOTO_URL = "images/anjli-gufrana.jpg";
+
+const board = document.getElementById("puzzleBoard");
+
+const movesDisplay = document.getElementById("moves");
+const timerDisplay = document.getElementById("timer");
+
+const instruction = document.getElementById("instruction");
+const successMessage = document.getElementById("successMessage");
+const nextBtn = document.getElementById("nextBtn");
+
+let tiles = [];
+let moves = 0;
+let seconds = 0;
+let timerInterval = null;
+let timerStarted = false;
+let gameCompleted = false;
+
+
+// Load photo before starting
+const photo = new Image();
+
+photo.onload = function() {
+    startGame();
+};
+
+photo.onerror = function() {
+    board.innerHTML =
+        "<p style='grid-column:1/4;align-self:center;color:#b45b91;padding:20px;font-size:13px'>Photo nahi mil rahi. Please images folder aur photo ka naam check karo.</p>";
+};
+
+photo.src = PHOTO_URL;
+
+
+// Start or reset game
+function startGame() {
+
+    clearInterval(timerInterval);
+
+    moves = 0;
+    seconds = 0;
+    timerStarted = false;
+    gameCompleted = false;
+
+    movesDisplay.textContent = "0";
+    timerDisplay.textContent = "0:00";
+
+    successMessage.classList.remove("show");
+    nextBtn.classList.remove("show");
+
+    instruction.textContent =
+        "Solve this first to go to the next surprise! 💗";
+
+    shufflePuzzle();
+}
+
+
+// Get adjacent tile positions
+function getNeighbors(emptyIndex) {
+
+    const neighbors = [];
+
+    const row = Math.floor(emptyIndex / 3);
+    const col = emptyIndex % 3;
+
+    if (row > 0) neighbors.push(emptyIndex - 3);
+    if (row < 2) neighbors.push(emptyIndex + 3);
+    if (col > 0) neighbors.push(emptyIndex - 1);
+    if (col < 2) neighbors.push(emptyIndex + 1);
+
+    return neighbors;
+}
+
+
+// Shuffle puzzle using legal moves
+function shufflePuzzle() {
+
+    tiles = [1, 2, 3, 4, 5, 6, 7, 8, 0];
+
+    let previousEmpty = -1;
+
+    for (let i = 0; i < 120; i++) {
+
+        const emptyIndex = tiles.indexOf(0);
+
+        let possible = getNeighbors(emptyIndex)
+            .filter(index => index !== previousEmpty);
+
+        const randomIndex =
+            possible[Math.floor(Math.random() * possible.length)];
+
+        [tiles[emptyIndex], tiles[randomIndex]] =
+        [tiles[randomIndex], tiles[emptyIndex]];
+
+        previousEmpty = emptyIndex;
+    }
+
+    if (isSolved()) {
+        shufflePuzzle();
+        return;
+    }
+
+    renderBoard();
+}
+
+
+// Render all puzzle tiles
+function renderBoard() {
+
+    board.innerHTML = "";
+
+    tiles.forEach((tileNumber, index) => {
+
+        const tile = document.createElement("div");
+
+        tile.className = "tile";
+
+        if (tileNumber === 0) {
+
+            tile.classList.add("empty");
+
+        } else {
+
+            const originalIndex = tileNumber - 1;
+
+            const row = Math.floor(originalIndex / 3);
+            const col = originalIndex % 3;
+
+            tile.style.backgroundImage =
+                `url("${PHOTO_URL}")`;
+
+            tile.style.backgroundSize = "300% 300%";
+
+            tile.style.backgroundPosition =
+                `${col * 50}% ${row * 50}%`;
+
+            const emptyIndex = tiles.indexOf(0);
+
+            if (getNeighbors(emptyIndex).includes(index)) {
+                tile.classList.add("movable");
+            }
+
+            tile.addEventListener("click", function() {
+                moveTile(index);
+            });
+        }
+
+        board.appendChild(tile);
+    });
+}
+
+
+// Move a tile into the empty space
+function moveTile(index) {
+
+    if (gameCompleted) return;
+
+    const emptyIndex = tiles.indexOf(0);
+
+    if (!getNeighbors(emptyIndex).includes(index)) {
+        return;
+    }
+
+    if (!timerStarted) {
+        startTimer();
+        timerStarted = true;
+    }
+
+    [tiles[index], tiles[emptyIndex]] =
+    [tiles[emptyIndex], tiles[index]];
+
+    moves++;
+
+    movesDisplay.textContent = moves;
+
+    renderBoard();
+
+    if (isSolved()) {
+        finishGame();
+    }
+}
+
+
+// Start timer
+function startTimer() {
+
+    timerInterval = setInterval(() => {
+
+        seconds++;
+
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+
+        timerDisplay.textContent =
+            minutes + ":" + String(remainingSeconds).padStart(2, "0");
+
+    }, 1000);
+}
+
+
+// Check if puzzle is solved
+function isSolved() {
+
+    return tiles.every((tile, index) =>
+        tile === index + 1 || (index === 8 && tile === 0)
+    );
+}
+
+
+// Puzzle completed
+function finishGame() {
+
+    gameCompleted = true;
+
+    clearInterval(timerInterval);
+
+    instruction.textContent =
+        "Amazing! You solved the birthday puzzle! 💖";
+
+    successMessage.classList.add("show");
+
+    nextBtn.classList.add("show");
+
+    renderBoard();
+}
+
+
+// Shuffle again button
+document.getElementById("shuffleBtn").addEventListener("click", function() {
+    startGame();
+});
+
+
+// Next surprise after solving
+nextBtn.addEventListener("click", function() {
+    saveTreasureMusicTime();
+    window.location.href = "memories.html";
+});
+
+
+// Skip puzzle popup
+const skipBtn = document.getElementById("skipBtn");
+const skipOverlay = document.getElementById("skipOverlay");
+
+skipBtn.addEventListener("click", function() {
+    skipOverlay.classList.add("show");
+});
+
+
+// First skip option
+document.getElementById("cantSolve").addEventListener("click", function() {
+    saveTreasureMusicTime();
+    window.location.href = "memories.html";
+});
+
+
+// Second skip option
+document.getElementById("solveLater").addEventListener("click", function() {
+    saveTreasureMusicTime();
+    window.location.href = "memories.html";
+});
+
+
+// Close popup and continue puzzle
+document.getElementById("closePopup").addEventListener("click", function() {
+    skipOverlay.classList.remove("show");
+});
+
+</script>
+
+</body>
+</html>
