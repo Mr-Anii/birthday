@@ -5,12 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#ffeaf1">
-
 <title>A Little Surprise for Rasmalai ❤️</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -909,7 +907,6 @@ button {
 
 <audio id="firstPageMusic" src="music/music1.mp3" loop preload="auto"></audio>
 
-
 <!-- FIRST SCREEN -->
 
 <main class="welcome-screen" id="welcomeScreen">
@@ -963,15 +960,13 @@ button {
             <span>♡</span>
         </div>
 
+        <!-- BUTTON: DATE COUNTDOWN COMPLETE HONE KE BAAD DIKHEGA -->
 
-        <!-- PLAY BUTTON: COUNTDOWN ABHI HIDDEN HAI -->
-
-        <button type="button" class="start-button" id="startButton">
+        <button type="button" class="start-button" id="startButton" hidden>
             ♫ Play Music & Continue
         </button>
 
-
-        <!-- COUNTDOWN: BUTTON CLICK KE BAAD DIKHEGA -->
+        <!-- DATE COUNTDOWN -->
 
         <div class="countdown-area" id="countdownArea" hidden>
 
@@ -993,14 +988,14 @@ button {
                 </div>
 
                 <div class="countdown-unit">
-                    <div class="countdown-number" id="countSeconds">05</div>
+                    <div class="countdown-number" id="countSeconds">00</div>
                     <span>SECS</span>
                 </div>
 
             </div>
 
             <p class="timer-note" id="timerNote">
-                Your little surprise opens automatically ❤️
+                Your special surprise is getting closer ❤️
             </p>
 
             <div class="early-access">
@@ -1012,7 +1007,6 @@ button {
     </section>
 
 </main>
-
 
 <!-- PASSWORD SCREEN -->
 
@@ -1043,7 +1037,6 @@ button {
             <p>A special surprise is waiting for you...</p>
 
         </div>
-
 
         <div class="keypad-section">
 
@@ -1134,7 +1127,6 @@ button {
 
             </div>
 
-
             <div class="feedback-view" id="feedbackView" hidden>
 
                 <img
@@ -1164,21 +1156,19 @@ button {
 
 </section>
 
-
 <script>
 
 /* =========================================
-   SETTINGS
+   SETTINGS - YAHAN DATE CHANGE KARNI HAI
 ========================================= */
 
-// Testing ke liye 5 seconds.
-// Final countdown ke liye is value ko change kar sakte ho.
-const TEST_SECONDS = 5;
+// TEST DATE: 25 NOVEMBER 2026, 12:00 AM IST
+// Testing ke baad ise 14 December 2026 kar dena.
 
-// Actual opening date set karna ho toh:
-// const openingDate = new Date("2026-12-04T00:00:00");
-// Filhaal null ka matlab testing countdown.
-const openingDate = null;
+const openingDate = new Date("2026-11-25T00:00:00+05:30");
+
+// Date countdown complete hone ke baad ka timer.
+const TEST_SECONDS = 5;
 
 
 /* =========================================
@@ -1246,112 +1236,55 @@ document.addEventListener("visibilitychange", () => {
 
 
 /* =========================================
-   START BUTTON CLICK
+   INITIAL DATE CHECK
 ========================================= */
 
-startButton.addEventListener("click", async () => {
+function initializePage() {
 
-    if (countdownStarted) return;
+    const now = Date.now();
+    const target = openingDate.getTime();
 
-    countdownStarted = true;
+    if (now < target) {
 
-    // Button ko disable kar do taaki double click na ho.
-    startButton.disabled = true;
-    startButton.textContent = "♫ Starting your surprise...";
-
-    // User ke direct click par music start hoga.
-    try {
-
-        await firstPageMusic.play();
-
+        // 14 December se pehle date countdown chalega.
         startButton.hidden = true;
-
-        // Countdown screen reveal karo.
         countdownArea.hidden = false;
 
-        // Music aur countdown ek saath start honge.
-        startCountdown();
+        timerNote.textContent =
+            "Your special surprise opens at midnight ❤️";
 
-    } catch (error) {
-
-        console.error("Music could not start:", error);
-
-        countdownStarted = false;
-        startButton.disabled = false;
-        startButton.textContent = "Tap Again to Play Music ♫";
-
-        alert("Music start nahi hua. Ek baar button phir tap karo.");
-
-    }
-
-});
-
-
-/* =========================================
-   COUNTDOWN MESSAGE
-========================================= */
-
-if (openingDate === null) {
-
-    timerNote.textContent =
-        "Your little surprise opens automatically ❤️";
-
-} else {
-
-    timerNote.textContent =
-        "Your surprise opens at midnight on 4 December ❤️";
-
-}
-
-
-/* =========================================
-   FORMAT TIME
-========================================= */
-
-function formatTime(value) {
-    return String(value).padStart(2, "0");
-}
-
-
-/* =========================================
-   START COUNTDOWN
-========================================= */
-
-function startCountdown() {
-
-    const startTime = Date.now();
-
-    let openingDeadline;
-
-    if (openingDate === null) {
-
-        openingDeadline =
-            startTime + (TEST_SECONDS * 1000);
-
-    } else if (startTime < openingDate.getTime()) {
-
-        openingDeadline =
-            openingDate.getTime();
+        startDateCountdown();
 
     } else {
 
-        openingDeadline =
-            startTime + (TEST_SECONDS * 1000);
+        // Opening date aa chuki hai.
+        // Date countdown skip hoga.
+        countdownArea.hidden = true;
+        startButton.hidden = false;
+
+        startButton.disabled = false;
+        startButton.textContent =
+            "♫ Play Music & Continue";
 
     }
 
-    function updateCountdown() {
+}
 
-        const currentTime = Date.now();
 
-        const remainingMilliseconds = Math.max(
+/* =========================================
+   DATE COUNTDOWN
+========================================= */
+
+function startDateCountdown() {
+
+    function updateDateCountdown() {
+
+        const remaining = Math.max(
             0,
-            openingDeadline - currentTime
+            openingDate.getTime() - Date.now()
         );
 
-        const totalSeconds = Math.ceil(
-            remainingMilliseconds / 1000
-        );
+        const totalSeconds = Math.ceil(remaining / 1000);
 
         const days = Math.floor(totalSeconds / 86400);
 
@@ -1370,18 +1303,139 @@ function startCountdown() {
         countMinutes.textContent = formatTime(minutes);
         countSeconds.textContent = formatTime(seconds);
 
-        if (
-            remainingMilliseconds <= 0 &&
-            !transitionStarted
-        ) {
-            openPasswordScreen();
+        if (remaining <= 0) {
+
+            clearInterval(countdownTimer);
+            countdownTimer = null;
+
+            // Date countdown khatam.
+            // Ab user button click karke music start karega.
+            countdownArea.hidden = true;
+            startButton.hidden = false;
+            startButton.disabled = false;
+
+            startButton.textContent =
+                "♫ Play Music & Continue";
+
         }
 
     }
 
-    updateCountdown();
+    updateDateCountdown();
 
-    countdownTimer = setInterval(updateCountdown, 200);
+    countdownTimer = setInterval(
+        updateDateCountdown,
+        250
+    );
+
+}
+
+
+/* =========================================
+   FORMAT TIME
+========================================= */
+
+function formatTime(value) {
+    return String(value).padStart(2, "0");
+}
+
+
+/* =========================================
+   PLAY MUSIC & START 5 SECOND COUNTDOWN
+========================================= */
+
+startButton.addEventListener("click", () => {
+
+    if (countdownStarted) return;
+
+    countdownStarted = true;
+
+    startButton.disabled = true;
+    startButton.textContent = "♫ Starting your surprise...";
+
+    // Music user ke direct click par start hogi.
+    const playPromise = firstPageMusic.play();
+
+    if (playPromise !== undefined) {
+
+        playPromise.then(() => {
+
+            startButton.hidden = true;
+
+            // 5-second countdown show karo.
+            countdownArea.hidden = false;
+
+            timerNote.textContent =
+                "Your little surprise opens automatically ❤️";
+
+            startShortCountdown();
+
+        }).catch((error) => {
+
+            console.error("Music could not start:", error);
+
+            countdownStarted = false;
+
+            startButton.disabled = false;
+            startButton.textContent =
+                "Tap Again to Play Music ♫";
+
+        });
+
+    } else {
+
+        startButton.hidden = true;
+        countdownArea.hidden = false;
+
+        timerNote.textContent =
+            "Your little surprise opens automatically ❤️";
+
+        startShortCountdown();
+
+    }
+
+});
+
+
+/* =========================================
+   5 SECOND COUNTDOWN
+========================================= */
+
+function startShortCountdown() {
+
+    const deadline = Date.now() + (TEST_SECONDS * 1000);
+
+    function updateShortCountdown() {
+
+        const remaining = Math.max(
+            0,
+            deadline - Date.now()
+        );
+
+        const totalSeconds = Math.ceil(remaining / 1000);
+
+        countDays.textContent = "0";
+        countHours.textContent = "00";
+        countMinutes.textContent = "00";
+        countSeconds.textContent = formatTime(totalSeconds);
+
+        if (remaining <= 0) {
+
+            clearInterval(countdownTimer);
+            countdownTimer = null;
+
+            openPasswordScreen();
+
+        }
+
+    }
+
+    updateShortCountdown();
+
+    countdownTimer = setInterval(
+        updateShortCountdown,
+        100
+    );
 
 }
 
@@ -1398,9 +1452,10 @@ function openPasswordScreen() {
 
     if (countdownTimer !== null) {
         clearInterval(countdownTimer);
+        countdownTimer = null;
     }
 
-    // Music ko pause nahi karna hai.
+    // Music ko pause nahi karna.
     saveMusicTime();
 
     welcomeScreen.classList.add("leaving");
@@ -1541,11 +1596,8 @@ function showCorrectPassword() {
 
     redirectTimer = setTimeout(() => {
 
-        // Next page par jaane se pehle music time save karo.
         saveMusicTime();
 
-        // Music1 ko yahan pause nahi kar rahe.
-        // Browser page change par first.html ka audio unload hoga.
         window.location.href = "surprise.html";
 
     }, 2600);
@@ -1701,6 +1753,13 @@ tryAgainButton.addEventListener("click", () => {
 ========================================= */
 
 updatePasswordBoxes();
+
+
+/* =========================================
+   START WEBSITE
+========================================= */
+
+initializePage();
 
 </script>
 
